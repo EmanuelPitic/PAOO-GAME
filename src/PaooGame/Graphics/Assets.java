@@ -12,7 +12,6 @@ import java.awt.image.BufferedImage;
 public class Assets
 {
         /// Referinte catre elementele grafice (dale) utilizate in joc.
-    public static BufferedImage playerLeft;
 
     public static BufferedImage wall1;
     public static BufferedImage wall2;
@@ -24,7 +23,7 @@ public class Assets
     public static BufferedImage[] heroRight;
     public static BufferedImage[] heroUp;
     public static BufferedImage[] heroDown;
-
+    public static BufferedImage[] button;
 
 
     /*! \fn public static void Init()
@@ -36,14 +35,23 @@ public class Assets
     public static void Init()
     {
         SpriteSheet sheet1= new SpriteSheet(ImageLoader.LoadImage("/textures/img.png"));
+        SpriteSheet sheet2= new SpriteSheet(ImageLoader.LoadImage("/textures/closed_door.png"));
+        SpriteSheet sheet3= new SpriteSheet(ImageLoader.LoadImage("/textures/open_door.png"));
+        SpriteSheet sheet4 = new SpriteSheet(ImageLoader.LoadImage("/textures/BUTTON.png"));
         wall1 = sheet1.crop(4, 6);
         floor1=sheet1.crop(0,6);
         floor2=sheet1.crop(1,6);
 
+        door=new BufferedImage[2];
+        door[0]=sheet2.crop(0,0);
+        door[1]=sheet3.crop(0,0);
         heroUp=new BufferedImage[30];
         heroDown=new BufferedImage[30];
         heroRight=new BufferedImage[30];
         heroLeft=new BufferedImage[30];
+        button=new BufferedImage[2];
+        button[0]=sheet4.crop(0,0);
+        button[1]=sheet4.crop(1,0);
 
         for (int i = 0; i < 30; i++)
         {

@@ -1,6 +1,7 @@
 package PaooGame.Worlds;
 
 import PaooGame.Entities.*;
+import PaooGame.Entities.Button;
 import PaooGame.Entities.EntityManager;
 import PaooGame.Input.KeyManager;
 import PaooGame.Tiles.Tile;
@@ -25,6 +26,10 @@ public class World {
         this.refLink=refLink;
         Hero hero = new Hero(refLink, 0, 32);
         entityManager = new EntityManager(refLink, hero);
+        Door door = new Door(refLink, 736, 192, true);
+       Button button = new Button(refLink, 448 , 416, false );
+        entityManager.addEntity(door);
+        entityManager.addEntity(button);
         //LEVEL1
         {
             width = 33;
@@ -89,4 +94,8 @@ public class World {
         entityManager.Render(g);
 
     }
+
+    public EntityManager getEntityManager(){return entityManager;}
+
+
 }

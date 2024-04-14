@@ -104,5 +104,9 @@ public class Hero extends DynamicEntity {
     public void Render(Graphics g) {
         g.drawImage(image, (int) x, (int) y, width, height, null);
     }
+    @Override
+    public boolean isStatic(){
+        return true;
+    }
 
 }

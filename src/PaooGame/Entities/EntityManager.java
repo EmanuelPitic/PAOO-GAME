@@ -20,7 +20,6 @@ public class EntityManager {
 
 
 
-
     /*! \fn EntityManager(RefLinks refLink, Hero hero)
                 \brief Constructorul cu parametri al clasei EntityManager. Adauga eroul la lista de entitati.
 
@@ -62,7 +61,7 @@ public class EntityManager {
             Entity e=it.next();
             e.Update();
 
-            /// daca viata entitatii respective s-a terminat, aceasta va fi eliminata de pe harta
+            // daca viata entitatii respective s-a terminat, aceasta va fi eliminata de pe harta
             if(!e.isActive())
                 it.remove();
         }
@@ -93,7 +92,6 @@ public class EntityManager {
         entities.add(e);
     }
 
-
     ///Getters & Setters pentru atribute
     public RefLinks getRefLink() {
         return refLink;
@@ -107,6 +105,45 @@ public class EntityManager {
         return hero;
     }
 
+    public boolean isDoor(){
+        for (Entity e:entities)
+        {
+            if (e.getName().equals("Door"))
+                return true;
+        }
+        return false;
+    }
+
+    public Door getDoor()
+    {
+        for (Entity e:entities)
+        {
+            if (e.getName().equals("Door"))
+                return (Door)e;
+
+        }
+        return (Door)entities.get(0);//nu se ajunge aici
+    }
+
+    public boolean isButton(){
+        for (Entity e:entities)
+        {
+            if (e.getName().equals("Button"))
+                return true;
+        }
+        return false;
+    }
+
+    public Button getButton()
+    {
+        for (Entity e:entities)
+        {
+            if (e.getName().equals("Button"))
+                return (Button)e;
+
+        }
+        return (Button)entities.get(0);//nu se ajunge aici
+    }
     public void setHero(Hero hero) {
         this.hero = hero;
     }
