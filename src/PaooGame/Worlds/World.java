@@ -25,7 +25,7 @@ public class World {
     public World(RefLinks refLink) {
         tileManager = new TileManager();
         this.refLink = refLink;
-        Hero hero = new Hero(refLink, 0, 32);
+        Hero hero = new Hero(refLink, 32, 32);
         entityManager = new EntityManager(refLink, hero);
         Door door = new Door(refLink, 736, 192, true);
         Button button = new Button(refLink, 448, 416, false);

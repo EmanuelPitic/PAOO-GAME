@@ -19,7 +19,7 @@ public abstract class DynamicEntity extends Entity {
     protected float yMove;/*!< Distanta cu care trebuie sa se miste eroul pe axa Y.*/
 
 
-    public static final float DEFAULT_SPEED         = 8.0f; /*!< Viteza implicita a unu caracter.*/
+    public static final float DEFAULT_SPEED         = 4.0f; /*!< Viteza implicita a unu caracter.*/
     public static final int DEFAULT_DynamicEntity_WIDTH  = 32;   /*!< Latimea implicita a imaginii caracterului.*/
     public static final int DEFAULT_DynamicEntity_HEIGHT = 32;   /*!< Inaltimea implicita a imaginii caracterului.*/
 

@@ -25,6 +25,8 @@ public class Assets {
     public static BufferedImage[] button;
     public static BufferedImage[] key;
 
+    public static BufferedImage[] startFinishDoor;
+
     public static BufferedImage[] enemyLeft;
     public static BufferedImage[] enemyRight;
     public static BufferedImage[] enemyUp;
@@ -44,6 +46,7 @@ public class Assets {
         SpriteSheet sheet4 = new SpriteSheet(ImageLoader.LoadImage("/textures/BUTTON.png"));
         SpriteSheet sheet5 = new SpriteSheet(ImageLoader.LoadImage("/textures/cheie.png"));
         SpriteSheet sheet6 = new SpriteSheet(ImageLoader.LoadImage("/textures/enemy.png"));
+        SpriteSheet sheet7 = new SpriteSheet(ImageLoader.LoadImage("/textures/StartFinishDoor.png"));
 
 
         wall1 = sheet1.crop(4, 6);
@@ -53,6 +56,11 @@ public class Assets {
         door = new BufferedImage[2];
         door[0] = sheet2.crop(0, 0);
         door[1] = sheet3.crop(0, 0);
+
+        startFinishDoor = new BufferedImage[2];
+        startFinishDoor[0] = sheet7.crop(0, 0);
+        startFinishDoor[1] = sheet7.crop(1, 0);
+
 
         heroUp = new BufferedImage[30];
         heroDown = new BufferedImage[30];

@@ -113,8 +113,10 @@ public class Enemy extends DynamicEntity {
         //System.out.println(x+" "+refLink.GetWorld().getEntityManager().getHero().getX());
         if ( (int)refLink.GetWorld().getEntityManager().getHero().getX()/16 == (int)x/16 && (int)refLink.GetWorld().getEntityManager().getHero().getY()/16 == (int)y/16)
         {
-            refLink.GetGame().GameOver();
-            System.out.println("Coliziune");
+
+            System.out.println("Coliziune intre caracter si enemy, trebuie implementat ecranul cu Game Lost");
+            refLink.GetGame().StopGame();
+
         }
 
 
