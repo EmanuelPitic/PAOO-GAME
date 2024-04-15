@@ -164,6 +164,23 @@ public class EntityManager {
         return (Key)entities.get(0);//nu se ajunge aici
     }
 
+    public boolean isEnemy(){
+        for (Entity e:entities)
+        {
+            if (e.getName().equals("Enemy"))
+                return true;
+        }
+        return false;
+    }
+    public Enemy getEnemy()
+    {
+        for (Entity e:entities)
+        {
+            if (e.getName().equals("Enemy"))
+                return (Enemy)e;
+        }
+        return (Enemy)entities.get(0);//nu se ajunge aici
+    }
 
     public void setHero(Hero hero) {
         this.hero = hero;

@@ -10,6 +10,7 @@ public class TileManager
     public TileManager()
     {
         tiles[1] = new Floor2(1);
+        tiles[2] = new Floor3(2);
         tiles[3] = new Floor1(3);
         tiles[5] = new Wall1Tile(5);     /*!< Dala de tip perete1*/
 

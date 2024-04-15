@@ -195,6 +195,12 @@ public class Game implements Runnable
 
         Metoda trebuie sa fie declarata synchronized pentru ca apelul acesteia sa fie semaforizat.
      */
+
+    public synchronized void GameOver()
+    {
+
+    }
+
     public synchronized void StopGame()
     {
         if(runState == true)

@@ -19,7 +19,7 @@ public abstract class DynamicEntity extends Entity {
     protected float yMove;/*!< Distanta cu care trebuie sa se miste eroul pe axa Y.*/
 
 
-    public static final float DEFAULT_SPEED         = 4.0f; /*!< Viteza implicita a unu caracter.*/
+    public static final float DEFAULT_SPEED         = 8.0f; /*!< Viteza implicita a unu caracter.*/
     public static final int DEFAULT_DynamicEntity_WIDTH  = 32;   /*!< Latimea implicita a imaginii caracterului.*/
     public static final int DEFAULT_DynamicEntity_HEIGHT = 32;   /*!< Inaltimea implicita a imaginii caracterului.*/
 
@@ -91,8 +91,6 @@ public abstract class DynamicEntity extends Entity {
                 y+=yMove;
             }else{
                 y=posy*Tile.TILE_HEIGHT+Tile.TILE_HEIGHT- bounds.y;
-
-
             }
         }
         else if (yMove>0){
@@ -130,10 +128,10 @@ public abstract class DynamicEntity extends Entity {
         {
             return true;
         }
-        System.out.println();
+/*        System.out.println();
         System.out.println("Coordonatele Button: "+refLink.GetWorld().getEntityManager().getButton().getY()/32+";"+refLink.GetWorld().getEntityManager().getButton().getX()/32);
         System.out.println("Coordonate Caracter: "+x+";"+y);
-        System.out.println();
+        System.out.println();*/
         if (refLink.GetWorld().getEntityManager().isButton() && !refLink.GetWorld().getEntityManager().getButton().isPressed() && (int)refLink.GetWorld().getEntityManager().getButton().getX()/32 == y && (int)refLink.GetWorld().getEntityManager().getButton().getY()/32 == x)
         {
             //System.out.println("Coordonatele Button: "+refLink.GetWorld().getEntityManager().getButton().getY()/32+";"+refLink.GetWorld().getEntityManager().getButton().getX()/32);
@@ -148,6 +146,7 @@ public abstract class DynamicEntity extends Entity {
             refLink.GetWorld().getEntityManager().getKey().setColected(true);
 
         }
+
 
 
         return refLink.GetWorld().GetTile(x,y).isSolid();

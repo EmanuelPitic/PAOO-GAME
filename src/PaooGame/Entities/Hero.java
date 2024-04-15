@@ -91,6 +91,7 @@ public class Hero extends DynamicEntity {
             xMove -= speed;
         if (refLink.GetKeyManager().right)
             xMove += speed;
+       // System.out.println("xmove: " + xMove+"; ymove: " + yMove);
 
     }
 
