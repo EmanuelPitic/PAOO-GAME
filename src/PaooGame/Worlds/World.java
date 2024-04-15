@@ -30,6 +30,7 @@ public class World {
         Door door = new Door(refLink, 736, 192, true);
         Button button = new Button(refLink, 448, 416, false);
         Key key = new Key(refLink, 736, 64, false);
+        //se incarca movmentul Enemy-ului
         float[] level1Movex = new float[]{
                 4.0F, 4.0F, 4.0F, 4.0F, 4.0F, 4.0F, 4.0F, 4.0F,
                 4.0F, 4.0F, 4.0F, 4.0F, 4.0F, 4.0F, 4.0F, 4.0F,
@@ -86,6 +87,7 @@ public class World {
         entityManager.addEntity(enemy);
         //LEVEL1
         {
+            //harta este aici
             width = 33;
             height = 17;
             mapTiles = new int[][]{

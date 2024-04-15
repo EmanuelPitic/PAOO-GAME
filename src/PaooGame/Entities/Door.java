@@ -30,11 +30,6 @@ public class Door extends StaticEntity {
 
     }
 
-    /*! \fn public void Draw(Graphics g)
-        \brief Functia de desenare a starii curente.
-
-        \param g Contextul grafic in care se realizeaza desenarea.
-     */
     @Override
     public void Render(Graphics g) {
         if (isSolid())
@@ -42,18 +37,6 @@ public class Door extends StaticEntity {
         else
             g.drawImage(Assets.door[1],(int)x,(int)y,width,height,null);
     }
-
-
-    /*! \fn public void die()
-        \brief Defineste notiunea de distrugere a entitatii pt obiecte de tip linie de finish
-*/
-/*
-    @Override
-    public void dissapear()
-    {
-
-    }
-*/
 
 
 

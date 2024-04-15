@@ -29,11 +29,11 @@ public abstract class DynamicEntity extends Entity {
                \brief Constructorul cu parametri al clasei DynamicEntity
 
                 \param reflink Referinta catre un obiect "shortcut"
-                \param x Pozitia pe axa X a imaginii creaturii
-                \param y Pozitia pe axa Y a imaginii creaturii
-                \param width Latimea imaginii creaturii
-                \param height Inaltimea imaginii creaturii
-                \param name Numele creaturii
+                \param x Pozitia pe axa X a imaginii entitatii
+                \param y Pozitia pe axa Y a imaginii entitatii
+                \param width Latimea imaginii entitatii
+                \param height Inaltimea imaginii entitatii
+                \param name Numele Entitatii
    */
     public DynamicEntity(RefLinks refLink, float x, float y, int width, int height,String name) {
         super(refLink, x, y,width,height,name);
@@ -42,9 +42,10 @@ public abstract class DynamicEntity extends Entity {
         yMove=0;
     }
 
-    /*! \fn public void Move()
-               \brief Implementeaza miscarea caracterului pe harta
-   */
+/*
+Realistic, functia Move() si in special movx si movy vor fi mutate in clasa erou, dar pentru ca le am impelementat asa de la inceput
+trebuie rescris mult cod, ramane pentru etapa urmatoare
+ */
     public void Move()
     {
         MoveX();
@@ -53,6 +54,7 @@ public abstract class DynamicEntity extends Entity {
 
     /*! \fn public void MoveX()
                    \brief Implementeaza miscarea caracterului pe axa X
+
        */
     public void MoveX(){
         if(xMove>0){
@@ -117,6 +119,8 @@ public abstract class DynamicEntity extends Entity {
 
                \param x Pozitia pe axa X a pt acel tile cu care se verifica coliziunea
                \param y Pozitia pe axa Y a pt acel tile cu care se verifica coliziunea
+
+               Totodata, impelementeaza efectul coliziunii cu obiectele statice cu care intra in contact; updateaza state-ul etc
    */
     protected boolean collisionWithTile(int y,int x){
         if (y < 0  || y > 33)

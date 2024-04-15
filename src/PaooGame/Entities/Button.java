@@ -9,8 +9,8 @@ import java.awt.*;
 
 public class Button extends StaticEntity {
 
-    /*! \fn public Door(RefLinks refLink, float x, float y)
-          \brief Constructorul cu parametri al clasei Door
+    /*! \fn public Button(RefLinks refLink, float x, float y)
+          \brief Constructorul cu parametri al clasei Button
 
            \param reflink Referinta catre un obiect "shortcut"
            \param x Pozitia pe axa X a entitatii statice
@@ -33,11 +33,6 @@ public class Button extends StaticEntity {
 
     }
 
-    /*! \fn public void Draw(Graphics g)
-        \brief Functia de desenare a starii curente.
-
-        \param g Contextul grafic in care se realizeaza desenarea.
-     */
     @Override
     public void Render(Graphics g) {
         if (!isPressed())
@@ -47,14 +42,6 @@ public class Button extends StaticEntity {
     }
 
 
-    /*! \fn public void die()
-        \brief Defineste notiunea de distrugere a entitatii pt obiecte de tip linie de finish
-*/
-/*    @Override
-    public void dissapear()
-    {
-
-    }*/
 
     public boolean isPressed() {return pressed;}
 

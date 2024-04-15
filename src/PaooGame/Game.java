@@ -111,7 +111,7 @@ public class Game implements Runnable
      */
     private void InitGame()
     {
-        wnd = new GameWindow("Joc PAOO", 1056, 544);
+        wnd = new GameWindow("THE GOLDEN GLOVE", 1056, 544);
         /// Este construita fereastra grafica.
         wnd.BuildGameWindow();
 

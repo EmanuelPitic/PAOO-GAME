@@ -10,7 +10,7 @@ import java.awt.*;
 public class Key extends StaticEntity {
 
     /*! \fn public Door(RefLinks refLink, float x, float y)
-          \brief Constructorul cu parametri al clasei Door
+          \brief Constructorul cu parametri al clasei Key
 
            \param reflink Referinta catre un obiect "shortcut"
            \param x Pozitia pe axa X a entitatii statice
@@ -47,14 +47,7 @@ public class Key extends StaticEntity {
     }
 
 
-    /*! \fn public void die()
-        \brief Defineste notiunea de distrugere a entitatii pt obiecte de tip linie de finish
-*/
-/*    @Override
-    public void dissapear()
-    {
 
-    }*/
 
     public boolean isColected() {return colected;}
 

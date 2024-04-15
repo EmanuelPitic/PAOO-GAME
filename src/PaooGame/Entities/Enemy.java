@@ -50,7 +50,7 @@ public class Enemy extends DynamicEntity {
 
     @Override
     public void Update() {
-
+        //aici ne ocupam cu parcurgerea traseului predefinit si cu verificarea interactiunii cu eroul
         if (asc)
         {
             if(index < movex.length)

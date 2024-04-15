@@ -13,7 +13,7 @@ public class Assets {
     /// Referinte catre elementele grafice (dale) utilizate in joc.
 
     public static BufferedImage wall1;
-    public static BufferedImage wall2;
+   // public static BufferedImage wall2; pentru nivelul urmator
     public static BufferedImage floor1;
     public static BufferedImage floor2;
     public static BufferedImage floor3;

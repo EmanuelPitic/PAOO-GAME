@@ -69,15 +69,6 @@ public abstract class Entity {
     }
 
 
-    ///Metoda abstracta destinata implementarii distrugerii unei entitati
-
-
-    /*! \fn public void hurt(int amount)
-               \brief Distrugerea treptata a entitatii
-
-               \param amount Cantitatea care trebuie scazuta din viata entitatii atunci cand aceasta este distrusa treptat
-   */
-
 
     /// Getters & Setters pentru atribute
     public float getX() {

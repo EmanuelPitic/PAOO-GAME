@@ -37,7 +37,7 @@ public class EntityManager {
 
     /*! \fn private Comparator<Entity> renderSorter
                 \brief Se ocupa de ordinea desenarii entitatilor pe harta.
-                Eroul si inamicul trebuie sa fie randati "deasupra" entitatilor statice (cascaval ,capcane)
+
     */
     private Comparator<Entity> renderSorter=new Comparator<Entity>() {
         @Override

@@ -2,10 +2,6 @@ package PaooGame.Entities;
 import PaooGame.RefLinks;
 
 
-/*! \public abstract class StaticEntity extends Entity
-    \brief Implementeaza notiunea de entitate statica( cascaval, capcana).
- */
-
 public abstract class StaticEntity extends Entity {
 
     protected boolean solid;

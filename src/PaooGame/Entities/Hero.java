@@ -107,7 +107,7 @@ public class Hero extends DynamicEntity {
     }
     @Override
     public boolean isStatic(){
-        return true;
+        return false;
     }
 
 }

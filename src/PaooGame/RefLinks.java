@@ -1,6 +1,5 @@
 package PaooGame;
 
-//import PaooGame.Maps.Map;
 
 import PaooGame.Input.KeyManager;
 import PaooGame.Worlds.World;
@@ -33,30 +32,6 @@ public class RefLinks
         return game.GetKeyManager();
     }
 
-    /*! \fn public KeyManager GetMouseManager()
-        \brief Returneaza referinta catre managerul evenimentelor de mouse.
-     */
-
-
-    /*! \fn public int GetWidth()
-        \brief Returneaza latimea ferestrei jocului.
-     */
-//    public int GetWidth()
-//    {
-//        return game.getWidth();
-//    }
-
-
-
-    /*! \fn public int GetHeight()
-        \brief Returneaza inaltimea ferestrei jocului.
-     */
-//
-//    public int GetHeight()
-//    {
-//        return game.getHeight();
-//    }
-
 
 
     /*! \fn public Game GetGame()
@@ -87,13 +62,6 @@ public class RefLinks
         return world;
     }
 
-
-
-    /*! \fn public void SetWorld(World world)
-        \brief Seteaza referinta catre harta curenta.
-
-        \param world Referinta catre harta curenta.
-     */
     public void SetWorld(World world)
     {
         this.world = world;

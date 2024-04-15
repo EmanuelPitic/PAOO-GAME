@@ -6,6 +6,9 @@ import java.awt.event.MouseMotionListener;
 /*! \public class MouseManager implements MouseListener si MouseMotionListener
     \brief Gestioneaza intrarea (input-ul) de la mouse.
  */
+/*
+facuta mai mult pentru etapele urmatoare+UI
+ */
 
 public class MouseManager implements MouseListener, MouseMotionListener {
 
