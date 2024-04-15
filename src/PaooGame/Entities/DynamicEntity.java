@@ -137,12 +137,17 @@ public abstract class DynamicEntity extends Entity {
         if (refLink.GetWorld().getEntityManager().isButton() && !refLink.GetWorld().getEntityManager().getButton().isPressed() && (int)refLink.GetWorld().getEntityManager().getButton().getX()/32 == y && (int)refLink.GetWorld().getEntityManager().getButton().getY()/32 == x)
         {
             //System.out.println("Coordonatele Button: "+refLink.GetWorld().getEntityManager().getButton().getY()/32+";"+refLink.GetWorld().getEntityManager().getButton().getX()/32);
-            System.out.println("Am ajuns aici");
+            //System.out.println("Am ajuns aici");
             refLink.GetWorld().getEntityManager().getDoor().setSolid(false);
             refLink.GetWorld().getEntityManager().getButton().setPressed(true);
 
         }
 
+        if (refLink.GetWorld().getEntityManager().isKey() && !refLink.GetWorld().getEntityManager().getKey().isColected() && (int)refLink.GetWorld().getEntityManager().getKey().getY()/32 == x && (int)refLink.GetWorld().getEntityManager().getKey().getX()/32 == y)
+        {
+            refLink.GetWorld().getEntityManager().getKey().setColected(true);
+
+        }
 
 
         return refLink.GetWorld().GetTile(x,y).isSolid();

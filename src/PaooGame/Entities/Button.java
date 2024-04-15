@@ -50,11 +50,11 @@ public class Button extends StaticEntity {
     /*! \fn public void die()
         \brief Defineste notiunea de distrugere a entitatii pt obiecte de tip linie de finish
 */
-    @Override
+/*    @Override
     public void dissapear()
     {
 
-    }
+    }*/
 
     public boolean isPressed() {return pressed;}
 

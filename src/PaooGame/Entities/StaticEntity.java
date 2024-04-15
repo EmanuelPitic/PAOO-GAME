@@ -9,7 +9,7 @@ import PaooGame.RefLinks;
 public abstract class StaticEntity extends Entity {
 
     protected boolean solid;
-    public abstract void dissapear();
+    ///public abstract void dissapear();
     /*! \fn public StaticEntity(RefLinks refLink, float x, float y, int width, int height,String name)
                \brief Constructorul cu parametri al clasei StaticEntity
 

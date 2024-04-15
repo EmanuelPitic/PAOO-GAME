@@ -144,6 +144,27 @@ public class EntityManager {
         }
         return (Button)entities.get(0);//nu se ajunge aici
     }
+
+    public boolean isKey()
+    {
+        for (Entity e:entities)
+        {
+            if (e.getName().equals("Key"))
+                return true;
+        }
+        return false;
+    }
+
+    public Key getKey(){
+        for (Entity e:entities)
+        {
+            if (e.getName().equals("Key"))
+                return (Key)e;
+        }
+        return (Key)entities.get(0);//nu se ajunge aici
+    }
+
+
     public void setHero(Hero hero) {
         this.hero = hero;
     }

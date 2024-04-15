@@ -7,7 +7,7 @@ import java.awt.*;
 
 
 
-public class Door extends StaticEntity {
+public class Key extends StaticEntity {
 
     /*! \fn public Door(RefLinks refLink, float x, float y)
           \brief Constructorul cu parametri al clasei Door
@@ -16,12 +16,15 @@ public class Door extends StaticEntity {
            \param x Pozitia pe axa X a entitatii statice
            \param y Pozitia pe axa Y a entitatii statice
 */
-    public Door(RefLinks refLink, float x, float y, boolean solid) {
-        super(refLink, x, y, Tile.TILE_WIDTH, Tile.TILE_HEIGHT,"Door", solid);
+
+    private boolean colected;
+    public Key(RefLinks refLink, float x, float y, boolean colected) {
+        super(refLink, x, y, Tile.TILE_WIDTH, Tile.TILE_HEIGHT,"Key", false);
         bounds.x=0;
         bounds.y=0;
         bounds.width=width;
         bounds.height=height;
+        setColected(false);
     }
 
     /// actualizarea starii curente
@@ -37,29 +40,23 @@ public class Door extends StaticEntity {
      */
     @Override
     public void Render(Graphics g) {
-        if (isSolid())
-            g.drawImage(Assets.door[0],(int)x,(int)y,width,height,null);
+        if (!isColected())
+            g.drawImage(Assets.key[0],(int)x,(int)y,width,height,null);
         else
-            g.drawImage(Assets.door[1],(int)x,(int)y,width,height,null);
+            g.drawImage(Assets.key[1],(int)x,(int)y,width,height,null);
     }
 
 
     /*! \fn public void die()
         \brief Defineste notiunea de distrugere a entitatii pt obiecte de tip linie de finish
 */
-/*
-    @Override
+/*    @Override
     public void dissapear()
     {
 
-    }
-*/
+    }*/
 
+    public boolean isColected() {return colected;}
 
-
-    public boolean isSolid() {
-        return solid;
-    }
-
-    public void setSolid(boolean solid) {this.solid = solid;}
+    public void setColected(boolean colected) {this.colected= colected;}
 }
