@@ -132,6 +132,10 @@ trebuie rescris mult cod, ramane pentru etapa urmatoare
         {
             return true;
         }
+        if (refLink.GetWorld().getEntityManager().getStartFinishDoor().isSolid() && refLink.GetWorld().getEntityManager().getStartFinishDoor().getX()/32 == y && refLink.GetWorld().getEntityManager().getStartFinishDoor().getY()/32 == x)
+        {
+            return true;
+        }
 /*        System.out.println();
         System.out.println("Coordonatele Button: "+refLink.GetWorld().getEntityManager().getButton().getY()/32+";"+refLink.GetWorld().getEntityManager().getButton().getX()/32);
         System.out.println("Coordonate Caracter: "+x+";"+y);
@@ -148,11 +152,9 @@ trebuie rescris mult cod, ramane pentru etapa urmatoare
         if (refLink.GetWorld().getEntityManager().isKey() && !refLink.GetWorld().getEntityManager().getKey().isColected() && (int)refLink.GetWorld().getEntityManager().getKey().getY()/32 == x && (int)refLink.GetWorld().getEntityManager().getKey().getX()/32 == y)
         {
             refLink.GetWorld().getEntityManager().getKey().setColected(true);
+            refLink.GetWorld().getEntityManager().getStartFinishDoor().setSolid(false);
 
         }
-
-
-
         return refLink.GetWorld().GetTile(x,y).isSolid();
     }
 

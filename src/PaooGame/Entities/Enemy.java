@@ -111,7 +111,7 @@ public class Enemy extends DynamicEntity {
             }
         }
         //System.out.println(x+" "+refLink.GetWorld().getEntityManager().getHero().getX());
-        if ( (int)refLink.GetWorld().getEntityManager().getHero().getX()/16 == (int)x/16 && (int)refLink.GetWorld().getEntityManager().getHero().getY()/16 == (int)y/16)
+        if ( (int)refLink.GetWorld().getEntityManager().getHero().getX()/32 == (int)x/32 && (int)refLink.GetWorld().getEntityManager().getHero().getY()/16 == (int)y/16)
         {
 
             System.out.println("Coliziune intre caracter si enemy, trebuie implementat ecranul cu Game Lost");

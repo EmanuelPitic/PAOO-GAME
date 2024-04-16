@@ -125,6 +125,18 @@ public class EntityManager {
         return (Door)entities.get(0);//nu se ajunge aici
     }
 
+    public StartFinishDoor getStartFinishDoor()
+    {
+        for (Entity e:entities)
+        {
+            if (e.getName().equals("StartFinishDoor"))
+                return (StartFinishDoor)e;
+
+        }
+        return (StartFinishDoor) entities.get(0);//nu se ajunge aici
+    }
+
+
     public boolean isButton(){
         for (Entity e:entities)
         {
