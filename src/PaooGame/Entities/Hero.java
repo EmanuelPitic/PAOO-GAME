@@ -53,7 +53,7 @@ public class Hero extends DynamicEntity {
     public void Update() {
         GetInput();
         Move();
-
+        refLink.GetWorld().getFogOfWar().setPlayerPosition((int)x/32,(int) y/32);
         aDown.Update();
         aLeft.Update();
         aUp.Update();

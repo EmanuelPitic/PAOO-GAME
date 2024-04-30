@@ -197,7 +197,6 @@ public class EntityManager {
     public void setHero(Hero hero) {
         this.hero = hero;
     }
-
     public ArrayList<Entity> getEntities() {
         return entities;
     }

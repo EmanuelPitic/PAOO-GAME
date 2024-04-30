@@ -1,8 +1,8 @@
 package PaooGame.Worlds;
-
 import PaooGame.Entities.*;
 import PaooGame.Entities.Button;
 import PaooGame.Entities.EntityManager;
+import PaooGame.Graphics.FogOfWar;
 import PaooGame.Input.KeyManager;
 import PaooGame.Tiles.Tile;
 import PaooGame.Tiles.TileManager;
@@ -21,11 +21,13 @@ public class World {
     private TileManager tileManager;
     private RefLinks refLink;
     private EntityManager entityManager;
+    private FogOfWar fogOfWar;
 
     public World(RefLinks refLink) {
         tileManager = new TileManager();
         this.refLink = refLink;
         Hero hero = new Hero(refLink, 32, 32);
+
         entityManager = new EntityManager(refLink, hero);
         Door door = new Door(refLink, 736, 192, true);
         Button button = new Button(refLink, 448, 416, false);
@@ -112,6 +114,7 @@ public class World {
                     {5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5}};
 
         }
+        this.fogOfWar= new FogOfWar(width,height,1,1);
     }
 
     public Tile GetTile(int x, int y) {
@@ -126,6 +129,8 @@ public class World {
     public boolean IsSolid(int x, int y) {
         return tileManager.getTile(mapTiles[x][y]).isSolid();
     }
+
+
 
 
     /*! \fn public  void Update()
@@ -148,6 +153,12 @@ public class World {
         for (int x = 0; x < height; x++) {
             for (int y = 0; y < width; y++) {
                 GetTile(x, y).Draw(g, x * Tile.TILE_WIDTH, y * Tile.TILE_HEIGHT);
+                if(!fogOfWar.isVisible(y,x)){
+                    tileManager.getTile(0).Draw(g, x * Tile.TILE_WIDTH, y * Tile.TILE_HEIGHT);
+                   // System.out.println("Ceva");
+                }
+
+
             }
             //System.out.println();
         }
@@ -158,6 +169,7 @@ public class World {
     public EntityManager getEntityManager() {
         return entityManager;
     }
+    public FogOfWar getFogOfWar() {return fogOfWar;}
 
 
 }

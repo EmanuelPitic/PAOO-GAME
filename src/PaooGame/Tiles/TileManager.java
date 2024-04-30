@@ -9,6 +9,7 @@ public class TileManager
     /// o singura data in memorie
     public TileManager()
     {
+        tiles[0] = new Fog(0);
         tiles[1] = new Floor2(1);
         tiles[2] = new Floor3(2);
         tiles[3] = new Floor1(3);

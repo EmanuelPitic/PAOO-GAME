@@ -13,7 +13,7 @@ public class Assets {
     /// Referinte catre elementele grafice (dale) utilizate in joc.
 
     public static BufferedImage wall1;
-   // public static BufferedImage wall2; pentru nivelul urmator
+    public static BufferedImage fog;// pentru nivelul urmator
     public static BufferedImage floor1;
     public static BufferedImage floor2;
     public static BufferedImage floor3;
@@ -47,8 +47,9 @@ public class Assets {
         SpriteSheet sheet5 = new SpriteSheet(ImageLoader.LoadImage("/textures/cheie.png"));
         SpriteSheet sheet6 = new SpriteSheet(ImageLoader.LoadImage("/textures/enemy.png"));
         SpriteSheet sheet7 = new SpriteSheet(ImageLoader.LoadImage("/textures/StartFinishDoor.png"));
+        SpriteSheet sheet8 = new SpriteSheet(ImageLoader.LoadImage("/textures/fog.png"));
 
-
+        fog = sheet8.crop(0,0);
         wall1 = sheet1.crop(4, 6);
         floor1 = sheet1.crop(0, 6);
         floor2 = sheet1.crop(1, 6);
