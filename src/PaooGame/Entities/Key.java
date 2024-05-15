@@ -1,5 +1,6 @@
 package PaooGame.Entities;
 import PaooGame.Graphics.Assets;
+import PaooGame.Level.Level;
 import PaooGame.RefLinks;
 import PaooGame.Tiles.Tile;
 
@@ -41,7 +42,13 @@ public class Key extends StaticEntity {
     @Override
     public void Render(Graphics g) {
         if (!isColected())
-            g.drawImage(Assets.key[0],(int)x,(int)y,width,height,null);
+        {
+            if (Level.getInstance().getLevelNr()!=3)
+                g.drawImage(Assets.key[0],(int)x,(int)y,width,height,null);
+            else
+                g.drawImage(Assets.finalKey,(int)x,(int)y,width,height,null);
+        }
+
         else
             g.drawImage(Assets.key[1],(int)x,(int)y,width,height,null);
 

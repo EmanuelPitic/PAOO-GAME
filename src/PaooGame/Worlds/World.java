@@ -14,6 +14,7 @@ import java.awt.*;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
+import java.util.ArrayList;
 //import java.awt.image.BufferedImage;
 
 public class World {
@@ -39,26 +40,35 @@ public class World {
         entityManager = new EntityManager(refLink, hero);
         this.fogOfWar = new FogOfWar(width, height, 1, 1);
         switch (Level.getInstance().getLevelNr()) {
-            case 1: {
+            case 1:
+            {
 
                 //Hero hero = new Hero(refLink, 32, 32);
-                isFogOfWar = false;
-
-                Door door = new Door(refLink, 736, 192, true);
-                Button button = new Button(refLink, 448, 416, false);
-                Key key = new Key(refLink, 736, 64, false);
+                isFogOfWar = true;
+                //hero.setSpeed(8);
+                Door door = new Door(refLink, 864, 96, true);
+                Button button = new Button(refLink, 896, 416, false);
+                MasterDoor masterDoor = new MasterDoor(refLink, 672, 480, true);
+                Key key = new Key(refLink, 864, 64, false);
                 StartFinishDoor startFinishDoor = new StartFinishDoor(refLink, 0, 32, true);
                 entityManager.addEntity(startFinishDoor);
                 entityManager.addEntity(door);
                 entityManager.addEntity(button);
                 entityManager.addEntity(key);
-                transparency = 0.0F;
+                entityManager.addEntity(masterDoor);
+                Lever lever1 = new Lever(refLink, 608, 64, false);
+                Lever lever2 = new Lever(refLink, 480, 64, false);
+                Lever lever3 = new Lever(refLink, 416, 480, false);
+                entityManager.addEntity(lever1);
+                entityManager.addEntity(lever2);
+                entityManager.addEntity(lever3);
+                transparency = 0.5F;
                 //harta este aici
 
                 try {
                     mapTiles = new int[height][width];
 
-                    File fisier = new File("map1.txt");
+                    File fisier = new File("map3.txt");
                     FileReader fr = new FileReader(fisier);
                     BufferedReader br = new BufferedReader(fr);
 
@@ -115,20 +125,8 @@ public class World {
                             }
                         }
 
-
-
                         Enemy auxiliar = EnemyFactory.createEnemy(enemyType, refLink, x, y, movesX, movesY);
                         entityManager.addEntity(auxiliar);
-
-
-     /*                   for (j = 0; j < numberOfMoves; j++) {
-                            movesX[j] = Float.parseFloat(linie);
-                        }
-                        for (j = 0; j < numberOfMoves; j++) {
-                            movesY[j] = Float.parseFloat(linie);
-                        }*/
-
-
                     }
 
                     br.close();
@@ -139,15 +137,16 @@ public class World {
                 }
 
             }
+
+
             break;
-            case 2:
-            {
+            case 2: {
                 //tileManager = new TileManager();
-               // this.refLink = refLink;
-               // Hero hero = new Hero(refLink, 32, 32);
+                // this.refLink = refLink;
+                // Hero hero = new Hero(refLink, 32, 32);
                 isFogOfWar = true;
-                transparency = 0.5F;
-               // entityManager = new EntityManager(refLink, hero);
+                transparency = 0.25F;
+                // entityManager = new EntityManager(refLink, hero);
                 Door door = new Door(refLink, 704, 384, true);
                 Button button = new Button(refLink, 514, 352, false);
                 Key key = new Key(refLink, 672, 384, false);
@@ -158,7 +157,7 @@ public class World {
                 entityManager.addEntity(key);
                 //harta este aici
                 //width = 33;
-               // height = 17;
+                // height = 17;
                 try {
                     mapTiles = new int[height][width];
 
@@ -226,117 +225,110 @@ public class World {
                     System.out.println(e);
                     System.exit(1);
                 }
-               // this.fogOfWar = new FogOfWar(width, height, 1, 1);
+                // this.fogOfWar = new FogOfWar(width, height, 1, 1);
+            }
+            break;
+            case 3:
+            {
+
+                //Hero hero = new Hero(refLink, 32, 32);
+                isFogOfWar = true;
+                //hero.setSpeed(8);
+                Door door = new Door(refLink, 864, 96, true);
+                Button button = new Button(refLink, 896, 416, false);
+                MasterDoor masterDoor = new MasterDoor(refLink, 672, 480, true);
+                Key key = new Key(refLink, 864, 64, false);
+                StartFinishDoor startFinishDoor = new StartFinishDoor(refLink, 0, 32, true);
+                entityManager.addEntity(startFinishDoor);
+                entityManager.addEntity(door);
+                entityManager.addEntity(button);
+                entityManager.addEntity(key);
+                entityManager.addEntity(masterDoor);
+                Lever lever1 = new Lever(refLink, 608, 64, false);
+                Lever lever2 = new Lever(refLink, 480, 64, false);
+                Lever lever3 = new Lever(refLink, 416, 480, false);
+                entityManager.addEntity(lever1);
+                entityManager.addEntity(lever2);
+                entityManager.addEntity(lever3);
+                transparency = 0.5F;
+                //harta este aici
+
+                try {
+                    mapTiles = new int[height][width];
+
+                    File fisier = new File("map3.txt");
+                    FileReader fr = new FileReader(fisier);
+                    BufferedReader br = new BufferedReader(fr);
+
+                    String linie;
+                    int row = 0;
+
+                    // Citirea fiecărei linii și conversia într-o matrice de întregi
+                    while (row < 17 && (linie = br.readLine()) != null) {
+                        String[] elemente = linie.split(" ");
+                        for (int col = 0; col < elemente.length; col++) {
+                            mapTiles[row][col] = Integer.parseInt(elemente[col]);
+                        }
+                        row++;
+                    }
+                    linie = br.readLine();//number of enemies
+                    int numberOfEnemies = Integer.parseInt(linie);
+                    for (int i = 0; i < numberOfEnemies; i++) {
+                        linie = br.readLine();//TypeOfEnemy
+                        int typeOfEnemy = Integer.parseInt(linie);
+                        Enemies enemyType = Enemies.values()[typeOfEnemy];
+                        linie = br.readLine(); //x and y spawn
+                        String[] intStrings = linie.trim().split("\\s+"); // Split by whitespace
+                        int x = Integer.parseInt(intStrings[0]);
+                        int y = Integer.parseInt(intStrings[1]);
+                        linie = br.readLine();//numberOfMoves
+                        int numberOfMoves = Integer.parseInt(linie);
+                        float[] movesX = new float[numberOfMoves];
+                        float[] movesY = new float[numberOfMoves];
+                        linie = br.readLine();
+                        int j = 0;
+                        String[] floatStrings = linie.trim().split("\\s+"); // Split by whitespace
+                        for (String floatString : floatStrings) {
+                            try {
+                                if (j < movesX.length - 1) {
+                                    float value = Float.parseFloat(floatString);
+                                    movesX[j++] = value;
+                                }
+
+                            } catch (NumberFormatException e) {
+                                System.out.println(e);
+                                // Handle the case where the string cannot be parsed to a float
+                            }
+                        }
+
+                        linie = br.readLine();
+                        j = 0;
+                        String[] floatStrings1 = linie.trim().split("\\s+"); // Split by whitespace
+                        for (String floatString : floatStrings1) {
+                            try {
+                                float value = Float.parseFloat(floatString);
+                                movesY[j++] = value;
+                            } catch (NumberFormatException e) {
+                                e.printStackTrace(); // Handle the case where the string cannot be parsed to a float
+                            }
+                        }
+
+                        Enemy auxiliar = EnemyFactory.createEnemy(enemyType, refLink, x, y, movesX, movesY);
+                        entityManager.addEntity(auxiliar);
+                    }
+
+                    br.close();
+                    fr.close();
+                } catch (Exception e) {
+                    System.out.println(e);
+                    System.exit(1);
+                }
+
             }
             break;
             default:
-            System.out.println("Ai castigat!");
+                System.out.println("Ai castigat!");
         }
-        //LEVEL1
-/*        {
-            tileManager = new TileManager();
-            this.refLink = refLink;
-            Hero hero = new Hero(refLink, 32, 32);
-            isFogOfWar = false;
-            entityManager = new EntityManager(refLink, hero);
-            Door door = new Door(refLink, 736, 192, true);
-            Button button = new Button(refLink, 448, 416, false);
-            Key key = new Key(refLink, 736, 64, false);
-            StartFinishDoor startFinishDoor = new StartFinishDoor(refLink, 0, 32, true);
-            entityManager.addEntity(startFinishDoor);
-            entityManager.addEntity(door);
-            entityManager.addEntity(button);
-            entityManager.addEntity(key);
-            transparency=0.0F;
-            //harta este aici
-            width = 33;
-            height = 17;
-            try {
-                mapTiles = new int[height][width];
-
-                File fisier = new File("map2.txt");
-                FileReader fr = new FileReader(fisier);
-                BufferedReader br = new BufferedReader(fr);
-
-                String linie;
-                int row = 0;
-
-                // Citirea fiecărei linii și conversia într-o matrice de întregi
-                while (row < 17 && (linie = br.readLine()) != null) {
-                    String[] elemente = linie.split(" ");
-                    for (int col = 0; col < elemente.length; col++) {
-                        mapTiles[row][col] = Integer.parseInt(elemente[col]);
-                    }
-                    row++;
-                }
-                linie = br.readLine();//number of enemies
-                int numberOfEnemies = Integer.parseInt(linie);
-                for (int i = 0; i < numberOfEnemies; i++) {
-                    linie = br.readLine();//TypeOfEnemy
-                    int typeOfEnemy = Integer.parseInt(linie);
-                    Enemies enemyType = Enemies.values()[typeOfEnemy];
-                    linie = br.readLine(); //x and y spawn
-                    String[] intStrings = linie.trim().split("\\s+"); // Split by whitespace
-                    int x = Integer.parseInt(intStrings[0]);
-                    int y = Integer.parseInt(intStrings[1]);
-                    linie = br.readLine();//numberOfMoves
-                    int numberOfMoves = Integer.parseInt(linie);
-                    float[] movesX = new float[numberOfMoves];
-                    float[] movesY = new float[numberOfMoves];
-                    linie = br.readLine();
-                    int j = 0;
-                    String[] floatStrings = linie.trim().split("\\s+"); // Split by whitespace
-                    for (String floatString : floatStrings ) {
-                        try {
-                            if (j<movesX.length - 1) {
-                                float value = Float.parseFloat(floatString);
-                                movesX[j++] = value;
-                            }
-
-                        }
-                        catch (NumberFormatException e) {
-                            System.out.println(e.toString());; // Handle the case where the string cannot be parsed to a float
-                        }
-                    }
-
-                    linie = br.readLine();
-                    j = 0;
-                    floatStrings = linie.trim().split("\\s+"); // Split by whitespace
-                    for (String floatString : floatStrings) {
-                        try {
-                            float value = Float.parseFloat(floatString);
-                            movesY[j++] = value;
-                        } catch (NumberFormatException e) {
-                            e.printStackTrace(); // Handle the case where the string cannot be parsed to a float
-                        }
-                    }
-                    Enemy auxiliar = EnemyFactory.createEnemy(enemyType, refLink, x, y, movesX, movesY);
-                    entityManager.addEntity(auxiliar);
-
-
-                   *//* for (int j = 0; j < numberOfMoves; j++) {
-                        movesX[j] = Float.parseFloat(linie);
-                    }
-                    for (int j= 0; j < numberOfMoves; j++) {
-                        movesY[j] = Float.parseFloat(linie);
-                    }*//*
-         *//*                    for (j = 0; j < numberOfMoves; j++) {
-                        System.out.println(movesX[j] + " " + movesY[j]);
-                    }*//*
-
-
-
-                }
-
-                br.close();
-                fr.close();
-            } catch (Exception e) {
-                System.out.println(e);
-                System.exit(1);
-            }
-            this.fogOfWar = new FogOfWar(width, height, 1, 1);
-        }*/
-        //Level2
 
     }
 
@@ -375,30 +367,27 @@ public class World {
         for (int x = 0; x < height; x++) {
             for (int y = 0; y < width; y++) {
                 GetTile(x, y).Draw(g, x * Tile.TILE_WIDTH, y * Tile.TILE_HEIGHT);
-
-
             }
-            //System.out.println();
         }
         entityManager.Render(g);
         if (isFogOfWar) {
+            boolean[][] visibleMatrix = new boolean[17][33];
+
             for (int x = 0; x < height; x++) {
                 for (int y = 0; y < width; y++) {
                     //GetTile(x, y).Draw(g, x * Tile.TILE_WIDTH, y * Tile.TILE_HEIGHT);
-                    if (!fogOfWar.isVisible(y, x)) {
-
-                        AlphaComposite ac = AlphaComposite.getInstance(AlphaComposite.SRC_OVER, transparency);
-                        ((Graphics2D) g).setComposite(ac);
-                        tileManager.getTile(0).Draw(g, x * Tile.TILE_WIDTH, y * Tile.TILE_HEIGHT);
-                        ac = AlphaComposite.getInstance(AlphaComposite.SRC_OVER, transparency);
-                        ((Graphics2D) g).setComposite(ac);
-                        // System.out.println("Ceva");
+                    if (isFogOfWar){
+                        if (!fogOfWar.isVisible(y, x)) {
+                            AlphaComposite ac = AlphaComposite.getInstance(AlphaComposite.SRC_OVER, transparency);
+                            ((Graphics2D) g).setComposite(ac);
+                            tileManager.getTile(0).Draw(g, x * Tile.TILE_WIDTH, y * Tile.TILE_HEIGHT);
+                            ac = AlphaComposite.getInstance(AlphaComposite.SRC_OVER, transparency);
+                            ((Graphics2D) g).setComposite(ac);
+                        }
                     }
 
 
                 }
-
-                //System.out.println();
             }
         }
         entityManager.getKey().Render(g);
@@ -413,5 +402,5 @@ public class World {
         return fogOfWar;
     }
 
-
 }
+

@@ -5,6 +5,8 @@ public class FogOfWar {
     private int width, height; // dimensiunea hărții
     private int playerX, playerY; // poziția jucătorului- eroului
 
+
+
     public FogOfWar(int width, int height, int playerX, int playerY) {
         this.width = width;
         this.height = height;

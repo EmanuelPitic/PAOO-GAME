@@ -17,7 +17,7 @@ public class EntityManager {
     private RefLinks refLink;           /*!< O referinte catre un obiect "shortcut", obiect ce contine o serie de referinte utile in program.*/
     private Hero hero;                  /*!< O referinta catre o entitate de tip erou*/
     private ArrayList<Entity>entities;  /*!< ArrayList cu toate entitatile din joc*/
-
+    //public boolean[][] visibleMatrix = new boolean[17][33];
 
 
     /*! \fn EntityManager(RefLinks refLink, Hero hero)
@@ -204,4 +204,57 @@ public class EntityManager {
     public void setEntities(ArrayList<Entity> entities) {
         this.entities = entities;
     }
+
+    public boolean isLever(){
+        for (Entity e:entities)
+        {
+            if (e.getName().equals("Lever"))
+                return true;
+        }
+        return false;
+    }
+
+    public ArrayList<Lever> getLever()
+    {
+        ArrayList<Lever> levers = new ArrayList<Lever>();
+        for (Entity e:entities)
+        {
+            if (e.getName().equals("Lever"))
+                levers.add((Lever)e);
+        }
+        return levers;//nu se ajunge aici
+    }
+
+    public boolean isMasterDoor(){
+        for (Entity e:entities)
+        {
+            if (e.getName().equals("MasterDoor"))
+                return true;
+        }
+        return false;
+    }
+
+    public MasterDoor getMasterDoor(){
+        for (Entity e:entities)
+        {
+            if (e.getName().equals("MasterDoor"))
+                return (MasterDoor)e;
+        }
+        return (MasterDoor) entities.get(0);//nu se ajunge aici
+    }
+
+    public ArrayList<Level3Enemy> getCars()
+    {
+        ArrayList<Level3Enemy> cars = new ArrayList<Level3Enemy>();
+        for (Entity e:entities)
+        {
+            if (e instanceof Level3Enemy)
+                cars.add((Level3Enemy) e);
+        }
+        return cars;//nu se ajunge aici
+    }
+
+
+
+
 }

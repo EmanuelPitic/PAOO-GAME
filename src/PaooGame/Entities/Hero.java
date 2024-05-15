@@ -35,9 +35,9 @@ public class Hero extends DynamicEntity {
     public Hero(RefLinks refLink, float x, float y) {
         super(refLink, x, y, DynamicEntity.DEFAULT_DynamicEntity_WIDTH, DynamicEntity.DEFAULT_DynamicEntity_HEIGHT, "Hero");
 
-        bounds.x = 7;
+        bounds.x = 8;
         bounds.y = 15;
-        bounds.width = 16;
+        bounds.width = 10;
         bounds.height = 16;
 
         aUp = new Animations(600, Assets.heroUp);
@@ -150,7 +150,15 @@ public class Hero extends DynamicEntity {
     }
     public void damgaTaken(int damage){
         health -= damage;
-        System.out.println(health);
+        //System.out.println(health);
+    }
+    public boolean isDead()
+    {
+        return (health == 0);
+    }
+    public int getHealth()
+    {
+        return health;
     }
 
 }

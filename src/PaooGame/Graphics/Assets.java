@@ -21,6 +21,9 @@ public class Assets {
     public static BufferedImage floor3;
     public static BufferedImage floor4;
     public static BufferedImage[] door;
+    public static BufferedImage[] masterDoor;
+    public static BufferedImage[] lever;
+
     public static BufferedImage[] heroLeft;
     public static BufferedImage[] heroLeftIdle;
     public static BufferedImage[] heroRight;
@@ -31,6 +34,7 @@ public class Assets {
     public static BufferedImage[] heroDownIdle;
     public static BufferedImage[] button;
     public static BufferedImage[] key;
+    public static BufferedImage finalKey;
 
     public static BufferedImage[] startFinishDoor;
 
@@ -43,6 +47,33 @@ public class Assets {
     public static BufferedImage[] dogRight;
     public static BufferedImage[] dogUp;
     public static BufferedImage[] dogDown;
+
+    public static BufferedImage[] policeCarDown;
+    public static BufferedImage[] policeCarUp;
+    public static BufferedImage[] policeCarLeft;
+    public static BufferedImage[] policeCarRight;
+
+
+    public static BufferedImage menuBackground;
+    public static BufferedImage thiefImage;
+    public static BufferedImage gloveImage;
+
+    public static BufferedImage[] pause_btn;
+    public static BufferedImage[] help_btn;
+    public static BufferedImage[] quit_btn;
+    public static BufferedImage[] reload;
+    public static BufferedImage[] resume;
+    public static BufferedImage[] back_btn;
+    public static BufferedImage[] loadGame_btn;
+    public static BufferedImage[] newGame_btn;
+    public static BufferedImage[] settings_btn;
+    public static BufferedImage[] musicOn_btn;
+    public static BufferedImage[] musicOff_btn;
+
+    public static BufferedImage ar_UP;
+    public static BufferedImage ar_DOWN;
+    public static BufferedImage ar_RIGHT;
+    public static BufferedImage ar_LEFT;
 
 
     /*! \fn public static void Init()
@@ -63,19 +94,42 @@ public class Assets {
         SpriteSheet sheet9 = new SpriteSheet(ImageLoader.LoadImage("/textures/tiles.png"));
         SpriteSheet sheet10 = new SpriteSheet(ImageLoader.LoadImage("/textures/player.png"));
         SpriteSheet sheet11 = new SpriteSheet(ImageLoader.LoadImage("/textures/level2Enemy.png"));
+        SpriteSheet buttons= new SpriteSheet(ImageLoader.LoadImage("/textures/buttons.png"));
+        SpriteSheet resumeSprite= new SpriteSheet(ImageLoader.LoadImage("/textures/resume.png"));
+        SpriteSheet arrows = new SpriteSheet(ImageLoader.LoadImage("/textures/arrows.png"));
+        SpriteSheet masterDoorSprite = new SpriteSheet(ImageLoader.LoadImage("/textures/masterDoor1.png"));
+        SpriteSheet leverSprite = new SpriteSheet(ImageLoader.LoadImage("/textures/lever.png"));
+        SpriteSheet policeCarSprite = new SpriteSheet(ImageLoader.LoadImage("/textures/policeCar.png"));
 
         fog = sheet8.crop(0,0);
+
         wall1 = sheet9.crop(4, 0);
         wall2 = sheet9.crop(3, 0);
+        wall3 = sheet9.crop(6, 0);
+
         floor1 = sheet9.crop(0, 0);
         floor2 = sheet9.crop(1, 0);
         floor3= sheet9.crop(8, 0);//enemyfloor
         floor4= sheet9.crop(7, 0);
-        wall3 = sheet9.crop(6, 0);
+
         door = new BufferedImage[2];
         door[0] = sheet2.crop(0, 0);
         door[1] = sheet3.crop(0, 0);
 
+        finalKey=ImageLoader.LoadImage("/textures/finalKey.png");
+
+
+        masterDoor = new BufferedImage[2];
+        masterDoor[0] = masterDoorSprite.crop(0,0);
+        masterDoor[1] = masterDoorSprite.crop(1,0);
+
+        lever = new BufferedImage[2];
+        lever[0] = leverSprite.crop(0,0);
+        lever[1] = leverSprite.crop(1,0);
+
+        menuBackground=ImageLoader.LoadImage("/textures/bgg.png");
+        thiefImage=ImageLoader.LoadImage("/textures/thiefImage.png");
+        gloveImage=ImageLoader.LoadImage("/textures/gloveImage.png");
 
         startFinishDoor = new BufferedImage[2];
         startFinishDoor[0] = sheet7.crop(0, 0);
@@ -117,6 +171,25 @@ public class Assets {
         dogUp[1] = sheet11.crop(10,0);
         dogUp[2] = sheet11.crop(11,0);
 
+        policeCarDown = new BufferedImage[2];
+        policeCarUp = new BufferedImage[2];
+        policeCarLeft = new BufferedImage[2];
+        policeCarRight = new BufferedImage[2];
+
+        policeCarDown[0] = policeCarSprite.crop(0,0);
+        policeCarDown[1] = policeCarSprite.crop(1,0);
+
+        policeCarUp[0] = policeCarSprite.crop(2,0);
+        policeCarUp[1] = policeCarSprite.crop(3,0);
+
+        policeCarLeft[0] = policeCarSprite.crop(4,0);
+        policeCarLeft[1] = policeCarSprite.crop(5,0);
+
+        policeCarRight[0] = policeCarSprite.crop(6,0);
+        policeCarRight[1] = policeCarSprite.crop(7,0);
+
+
+
 
         button = new BufferedImage[2];
         button[0] = sheet4.crop(0, 0);
@@ -147,6 +220,53 @@ public class Assets {
             enemyRight[i] = sheet6.crop(i, 3);
 
         }
+
+        resume=new BufferedImage[2];
+        pause_btn=new BufferedImage[2];
+        help_btn=new BufferedImage[2];
+        quit_btn=new BufferedImage[2];
+        back_btn=new BufferedImage[2];
+        reload=new BufferedImage[2];
+        loadGame_btn=new BufferedImage[2];
+        newGame_btn=new BufferedImage[2];
+        settings_btn=new BufferedImage[2];
+        musicOn_btn=new BufferedImage[2];
+        musicOff_btn=new BufferedImage[2];
+
+        resume[0] = resumeSprite.Crop(0,0,SpriteSheet.tileWidth*4,SpriteSheet.tileHeight);
+        resume[1] = resumeSprite.Crop(4,0,SpriteSheet.tileWidth*4,SpriteSheet.tileHeight);
+
+        pause_btn[0]=buttons.Crop(0,0,SpriteSheet.tileWidth*4,SpriteSheet.tileHeight);
+        pause_btn[1]=buttons.Crop(4,0,SpriteSheet.tileWidth*4,SpriteSheet.tileHeight);
+
+        help_btn[0]=buttons.Crop(0,1,SpriteSheet.tileWidth*4,SpriteSheet.tileHeight);
+        help_btn[1]=buttons.Crop(4,1,SpriteSheet.tileWidth*4,SpriteSheet.tileHeight);
+
+        quit_btn[0]= buttons.Crop(0,2,SpriteSheet.tileWidth*4,SpriteSheet.tileHeight);
+        quit_btn[1]= buttons.Crop(4,2,SpriteSheet.tileWidth*4,SpriteSheet.tileHeight);
+
+        back_btn[0]= buttons.Crop(0,3,SpriteSheet.tileWidth*4,SpriteSheet.tileHeight);
+        back_btn[1]= buttons.Crop(4,3,SpriteSheet.tileWidth*4,SpriteSheet.tileHeight);
+
+        newGame_btn[0]= buttons.Crop(0,4,SpriteSheet.tileWidth*4,SpriteSheet.tileHeight);
+        newGame_btn[1]= buttons.Crop(4,4,SpriteSheet.tileWidth*4,SpriteSheet.tileHeight);
+
+        loadGame_btn[0]= buttons.Crop(0,5,SpriteSheet.tileWidth*4,SpriteSheet.tileHeight);
+        loadGame_btn[1]= buttons.Crop(4,5,SpriteSheet.tileWidth*4,SpriteSheet.tileHeight);
+
+        settings_btn[0]=buttons.Crop(0,6,SpriteSheet.tileWidth*4,SpriteSheet.tileHeight);
+        settings_btn[1]=buttons.Crop(4, 6,SpriteSheet.tileWidth*4,SpriteSheet.tileHeight);
+
+        musicOn_btn[0]= buttons.Crop(0,7,SpriteSheet.tileWidth*4,SpriteSheet.tileHeight);
+        musicOn_btn[1]= buttons.Crop(4,7,SpriteSheet.tileWidth*4,SpriteSheet.tileHeight);
+
+        musicOff_btn[0]=buttons.Crop(0,8,SpriteSheet.tileWidth*4,SpriteSheet.tileHeight);
+        musicOff_btn[1]=buttons.Crop(4,8,SpriteSheet.tileWidth*4,SpriteSheet.tileHeight);
+
+        ar_RIGHT=arrows.Crop(0,0,SpriteSheet.tileWidth*2,SpriteSheet.tileHeight*2);
+        ar_UP=arrows.Crop(2,0,SpriteSheet.tileWidth*2,SpriteSheet.tileHeight*2);
+        ar_LEFT=arrows.Crop(4,0,SpriteSheet.tileWidth*2,SpriteSheet.tileHeight*2);
+        ar_DOWN=arrows.Crop(6,0,SpriteSheet.tileWidth*2,SpriteSheet.tileHeight*2);
 
 
         /// Se obtin subimaginile corespunzatoare elementelor necesare.

@@ -6,6 +6,8 @@ import PaooGame.RefLinks;
 import PaooGame.Tiles.Tile;
 import PaooGame.Level.Level;
 
+import java.util.ArrayList;
+
 /*! \class Creature extends Entity
     \brief Defineste notiunea abstracta de creatura/individ/fiinta din joc.
 
@@ -140,7 +142,9 @@ trebuie rescris mult cod, ramane pentru etapa urmatoare
         }
         if (!refLink.GetWorld().getEntityManager().getStartFinishDoor().isSolid() && refLink.GetWorld().getEntityManager().getStartFinishDoor().getX()/32 == y && refLink.GetWorld().getEntityManager().getStartFinishDoor().getY()/32 == x)
         {
-            Level.getInstance().incLevel();
+            System.out.println("ai trecut nivelu");
+           // Level.getInstance().incLevel();
+            Level.getInstance().setChangeLevel(true);
             return false;
         }
 /*        System.out.println();
@@ -155,13 +159,37 @@ trebuie rescris mult cod, ramane pentru etapa urmatoare
             refLink.GetWorld().getEntityManager().getButton().setPressed(true);
 
         }
-
+        if ( refLink.GetWorld().getEntityManager().isMasterDoor() && refLink.GetWorld().getEntityManager().getMasterDoor().isSolid() && refLink.GetWorld().getEntityManager().getMasterDoor().getX()/32 == y && refLink.GetWorld().getEntityManager().getMasterDoor().getY()/32 == x)
+        {
+            return true;
+        }
         if (refLink.GetWorld().getEntityManager().isKey() && !refLink.GetWorld().getEntityManager().getKey().isColected() && (int)refLink.GetWorld().getEntityManager().getKey().getY()/32 == x && (int)refLink.GetWorld().getEntityManager().getKey().getX()/32 == y)
         {
             refLink.GetWorld().getEntityManager().getKey().setColected(true);
             refLink.GetWorld().getEntityManager().getStartFinishDoor().setSolid(false);
 
         }
+
+        if (refLink.GetWorld().getEntityManager().isLever())
+        {
+            ArrayList<Lever> levers= refLink.GetWorld().getEntityManager().getLever();
+            boolean arePooled = true;
+            for (Lever lever: levers){
+                if (!lever.isPulled())
+                {
+                    if( lever.getY()/32 == x && lever.getX()/32 == y){
+                        lever.setPooled(true);
+                    }
+                    else {
+                        arePooled = false;
+                    }
+                }
+
+            }
+            refLink.GetWorld().getEntityManager().getMasterDoor().setSolid(!arePooled);
+
+        }
+
         return refLink.GetWorld().GetTile(x,y).isSolid();
     }
 

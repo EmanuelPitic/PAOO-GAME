@@ -12,9 +12,9 @@ public class Enemy extends DynamicEntity {
     private boolean damageGiven;
     private int damageCounter;
     public Animations animUp, animDown, animRight, animLeft;
-    private BufferedImage image;
-    private float[] movex;
-    private float[] movey;
+    public BufferedImage image;
+    public float[] movex;
+    public float[] movey;
     int lastMove;
     int index;
     boolean asc;
@@ -116,6 +116,7 @@ public class Enemy extends DynamicEntity {
                 index++;
             }
         }
+
         if(lastx != (int)x/32 ||  lasty != (int)y/32){
             lastx = (int)x/32;
             lasty = (int)y/32;
