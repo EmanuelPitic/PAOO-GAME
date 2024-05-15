@@ -14,6 +14,7 @@ public class Assets {
 
     public static BufferedImage wall1;
     public static BufferedImage wall2;
+    public static BufferedImage wall3;
     public static BufferedImage fog;// pentru nivelul urmator
     public static BufferedImage floor1;
     public static BufferedImage floor2;
@@ -59,11 +60,12 @@ public class Assets {
 
         fog = sheet8.crop(0,0);
         wall1 = sheet9.crop(4, 0);
-        wall2 = sheet9.crop(6, 0);
+        wall2 = sheet9.crop(3, 0);
         floor1 = sheet9.crop(0, 0);
         floor2 = sheet9.crop(1, 0);
         floor3= sheet9.crop(8, 0);//enemyfloor
         floor4= sheet9.crop(7, 0);
+        wall3 = sheet9.crop(6, 0);
         door = new BufferedImage[2];
         door[0] = sheet2.crop(0, 0);
         door[1] = sheet3.crop(0, 0);

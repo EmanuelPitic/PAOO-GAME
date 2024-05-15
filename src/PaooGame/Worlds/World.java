@@ -40,6 +40,109 @@ public class World {
 
         //entityManager.addEntity(enemy);
         //LEVEL1
+/*        {
+            tileManager = new TileManager();
+            this.refLink = refLink;
+            Hero hero = new Hero(refLink, 32, 32);
+            isFogOfWar = false;
+            entityManager = new EntityManager(refLink, hero);
+            Door door = new Door(refLink, 736, 192, true);
+            Button button = new Button(refLink, 448, 416, false);
+            Key key = new Key(refLink, 736, 64, false);
+            StartFinishDoor startFinishDoor = new StartFinishDoor(refLink, 0, 32, true);
+            entityManager.addEntity(startFinishDoor);
+            entityManager.addEntity(door);
+            entityManager.addEntity(button);
+            entityManager.addEntity(key);
+            //harta este aici
+            width = 33;
+            height = 17;
+            try {
+                mapTiles = new int[height][width];
+
+                File fisier = new File("map2.txt");
+                FileReader fr = new FileReader(fisier);
+                BufferedReader br = new BufferedReader(fr);
+
+                String linie;
+                int row = 0;
+
+                // Citirea fiecărei linii și conversia într-o matrice de întregi
+                while (row < 17 && (linie = br.readLine()) != null) {
+                    String[] elemente = linie.split(" ");
+                    for (int col = 0; col < elemente.length; col++) {
+                        mapTiles[row][col] = Integer.parseInt(elemente[col]);
+                    }
+                    row++;
+                }
+                linie = br.readLine();//number of enemies
+                int numberOfEnemies = Integer.parseInt(linie);
+                for (int i = 0; i < numberOfEnemies; i++) {
+                    linie = br.readLine();//TypeOfEnemy
+                    int typeOfEnemy = Integer.parseInt(linie);
+                    Enemies enemyType = Enemies.values()[typeOfEnemy];
+                    linie = br.readLine(); //x and y spawn
+                    String[] intStrings = linie.trim().split("\\s+"); // Split by whitespace
+                    int x = Integer.parseInt(intStrings[0]);
+                    int y = Integer.parseInt(intStrings[1]);
+                    linie = br.readLine();//numberOfMoves
+                    int numberOfMoves = Integer.parseInt(linie);
+                    float[] movesX = new float[numberOfMoves];
+                    float[] movesY = new float[numberOfMoves];
+                    linie = br.readLine();
+                    int j = 0;
+                    String[] floatStrings = linie.trim().split("\\s+"); // Split by whitespace
+                    for (String floatString : floatStrings ) {
+                        try {
+                            if (j<movesX.length - 1) {
+                                float value = Float.parseFloat(floatString);
+                                movesX[j++] = value;
+                            }
+
+                        }
+                        catch (NumberFormatException e) {
+                            System.out.println(e.toString());; // Handle the case where the string cannot be parsed to a float
+                        }
+                    }
+
+                    linie = br.readLine();
+                    j = 0;
+                    floatStrings = linie.trim().split("\\s+"); // Split by whitespace
+                    for (String floatString : floatStrings) {
+                        try {
+                            float value = Float.parseFloat(floatString);
+                            movesY[j++] = value;
+                        } catch (NumberFormatException e) {
+                            e.printStackTrace(); // Handle the case where the string cannot be parsed to a float
+                        }
+                    }
+                    Enemy auxiliar = EnemyFactory.createEnemy(enemyType, refLink, x, y, movesX, movesY);
+                    entityManager.addEntity(auxiliar);
+
+
+                   *//* for (int j = 0; j < numberOfMoves; j++) {
+                        movesX[j] = Float.parseFloat(linie);
+                    }
+                    for (int j= 0; j < numberOfMoves; j++) {
+                        movesY[j] = Float.parseFloat(linie);
+                    }*//*
+*//*                    for (j = 0; j < numberOfMoves; j++) {
+                        System.out.println(movesX[j] + " " + movesY[j]);
+                    }*//*
+
+
+
+                }
+
+                br.close();
+                fr.close();
+            } catch (Exception e) {
+                System.out.println(e);
+                System.exit(1);
+            }
+            this.fogOfWar = new FogOfWar(width, height, 1, 1);
+        }*/
+        //Level2
         {
             tileManager = new TileManager();
             this.refLink = refLink;
@@ -60,7 +163,7 @@ public class World {
             try {
                 mapTiles = new int[height][width];
 
-                File fisier = new File("map1.txt");
+                File fisier = new File("map2.txt");
                 FileReader fr = new FileReader(fisier);
                 BufferedReader br = new BufferedReader(fr);
 
