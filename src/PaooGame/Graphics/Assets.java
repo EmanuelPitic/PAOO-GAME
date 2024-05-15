@@ -13,15 +13,21 @@ public class Assets {
     /// Referinte catre elementele grafice (dale) utilizate in joc.
 
     public static BufferedImage wall1;
+    public static BufferedImage wall2;
     public static BufferedImage fog;// pentru nivelul urmator
     public static BufferedImage floor1;
     public static BufferedImage floor2;
     public static BufferedImage floor3;
+    public static BufferedImage floor4;
     public static BufferedImage[] door;
     public static BufferedImage[] heroLeft;
+    public static BufferedImage[] heroLeftIdle;
     public static BufferedImage[] heroRight;
+    public static BufferedImage[] heroRightIdle;
     public static BufferedImage[] heroUp;
+    public static BufferedImage[] heroUpIdle;
     public static BufferedImage[] heroDown;
+    public static BufferedImage[] heroDownIdle;
     public static BufferedImage[] button;
     public static BufferedImage[] key;
 
@@ -48,12 +54,16 @@ public class Assets {
         SpriteSheet sheet6 = new SpriteSheet(ImageLoader.LoadImage("/textures/enemy.png"));
         SpriteSheet sheet7 = new SpriteSheet(ImageLoader.LoadImage("/textures/StartFinishDoor.png"));
         SpriteSheet sheet8 = new SpriteSheet(ImageLoader.LoadImage("/textures/fog.png"));
+        SpriteSheet sheet9 = new SpriteSheet(ImageLoader.LoadImage("/textures/tiles.png"));
+        SpriteSheet sheet10 = new SpriteSheet(ImageLoader.LoadImage("/textures/player.png"));
 
         fog = sheet8.crop(0,0);
-        wall1 = sheet1.crop(4, 6);
-        floor1 = sheet1.crop(0, 6);
-        floor2 = sheet1.crop(1, 6);
-        floor3= sheet1.crop(8, 6);
+        wall1 = sheet9.crop(4, 0);
+        wall2 = sheet9.crop(6, 0);
+        floor1 = sheet9.crop(0, 0);
+        floor2 = sheet9.crop(1, 0);
+        floor3= sheet9.crop(8, 0);//enemyfloor
+        floor4= sheet9.crop(7, 0);
         door = new BufferedImage[2];
         door[0] = sheet2.crop(0, 0);
         door[1] = sheet3.crop(0, 0);
@@ -64,9 +74,13 @@ public class Assets {
 
 
         heroUp = new BufferedImage[30];
+        heroUpIdle = new BufferedImage[30];
         heroDown = new BufferedImage[30];
+        heroDownIdle = new BufferedImage[30];
         heroRight = new BufferedImage[30];
+        heroRightIdle = new BufferedImage[30];
         heroLeft = new BufferedImage[30];
+        heroLeftIdle = new BufferedImage[30];
 
         enemyUp = new BufferedImage[30];
         enemyDown = new BufferedImage[30];
@@ -82,20 +96,25 @@ public class Assets {
         key[1] = sheet5.crop(1, 0);
 
         for (int i = 0; i < 30; i++) {
-            heroLeft[i] = sheet1.crop(i, 0);
+            heroLeft[i] = sheet10.crop(i, 0);
+            heroLeftIdle[i]=sheet10.crop(i,1);
             enemyUp[i] = sheet6.crop(i, 0);
         }
         for (int i = 0; i < 30; i++) {
-            heroDown[i] = sheet1.crop(i, 2);
+            heroDown[i] = sheet10.crop(i, 2);
+            heroDownIdle[i]=sheet10.crop(i,3);
             enemyDown[i] = sheet6.crop(i, 1);
         }
         for (int i = 0; i < 30; i++) {
-            heroUp[i] = sheet1.crop(i, 4);
+            heroUp[i] = sheet10.crop(i, 4);
+            heroUpIdle[i]=sheet10.crop(i,5);
             enemyLeft[i] = sheet6.crop(i, 2);
         }
         for (int i = 0; i < 30; i++) {
-            heroRight[i] = sheet1.crop(i, 7);
+            heroRight[i] = sheet10.crop(i, 6);
+            heroRightIdle[i]=sheet10.crop(i,7);
             enemyRight[i] = sheet6.crop(i, 3);
+
         }
 
 

@@ -39,6 +39,7 @@ public class Button extends StaticEntity {
             g.drawImage(Assets.button[0],(int)x,(int)y,width,height,null);
         else
             g.drawImage(Assets.button[1],(int)x,(int)y,width,height,null);
+
     }
 
 

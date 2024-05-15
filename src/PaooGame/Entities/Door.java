@@ -33,9 +33,13 @@ public class Door extends StaticEntity {
     @Override
     public void Render(Graphics g) {
         if (isSolid())
+        {
             g.drawImage(Assets.door[0],(int)x,(int)y,width,height,null);
+
+        }
         else
             g.drawImage(Assets.door[1],(int)x,(int)y,width,height,null);
+
     }
 
 

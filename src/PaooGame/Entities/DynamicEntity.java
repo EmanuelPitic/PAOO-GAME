@@ -11,7 +11,7 @@ import PaooGame.Tiles.Tile;
     miste/deplaseze in urma calculelor.
  */
 
-public abstract class DynamicEntity extends Entity {
+public abstract class DynamicEntity extends Entity{
 
 
     protected float speed;/*!< Viteza unui caracter.*/

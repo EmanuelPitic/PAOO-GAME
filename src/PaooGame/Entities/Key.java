@@ -44,6 +44,7 @@ public class Key extends StaticEntity {
             g.drawImage(Assets.key[0],(int)x,(int)y,width,height,null);
         else
             g.drawImage(Assets.key[1],(int)x,(int)y,width,height,null);
+
     }
 
 
