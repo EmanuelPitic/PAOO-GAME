@@ -65,7 +65,6 @@ public class Hero extends DynamicEntity {
         if(xMove!=0 || yMove!=0)
             {
                 Move();
-
             }
         else
         {

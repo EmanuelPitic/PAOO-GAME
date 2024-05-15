@@ -1,8 +1,10 @@
 package PaooGame.Entities;
 
 import PaooGame.Entities.*;
+import PaooGame.Level.Level;
 import PaooGame.RefLinks;
 import PaooGame.Tiles.Tile;
+import PaooGame.Level.Level;
 
 /*! \class Creature extends Entity
     \brief Defineste notiunea abstracta de creatura/individ/fiinta din joc.
@@ -135,6 +137,11 @@ trebuie rescris mult cod, ramane pentru etapa urmatoare
         if (refLink.GetWorld().getEntityManager().getStartFinishDoor().isSolid() && refLink.GetWorld().getEntityManager().getStartFinishDoor().getX()/32 == y && refLink.GetWorld().getEntityManager().getStartFinishDoor().getY()/32 == x)
         {
             return true;
+        }
+        if (!refLink.GetWorld().getEntityManager().getStartFinishDoor().isSolid() && refLink.GetWorld().getEntityManager().getStartFinishDoor().getX()/32 == y && refLink.GetWorld().getEntityManager().getStartFinishDoor().getY()/32 == x)
+        {
+            Level.getInstance().incLevel();
+            return false;
         }
 /*        System.out.println();
         System.out.println("Coordonatele Button: "+refLink.GetWorld().getEntityManager().getButton().getY()/32+";"+refLink.GetWorld().getEntityManager().getButton().getX()/32);

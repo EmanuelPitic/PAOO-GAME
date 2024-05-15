@@ -9,10 +9,10 @@ public class Level2Enemy extends Enemy{
     {
 
         super(refLink, x, y, moveX, moveY, 15);
-        animDown = new Animations(600, Assets.enemyDown);
-        animUp = new Animations(600, Assets.enemyUp);
-        animLeft = new Animations(600, Assets.enemyLeft);
-        animRight = new Animations(600, Assets.enemyRight);
+        animDown = new Animations(600, Assets.dogDown);
+        animUp = new Animations(600, Assets.dogUp);
+        animLeft = new Animations(600, Assets.dogLeft);
+        animRight = new Animations(600, Assets.dogRight);
 
     }
 

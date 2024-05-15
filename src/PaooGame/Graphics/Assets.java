@@ -39,6 +39,11 @@ public class Assets {
     public static BufferedImage[] enemyUp;
     public static BufferedImage[] enemyDown;
 
+    public static BufferedImage[] dogLeft;
+    public static BufferedImage[] dogRight;
+    public static BufferedImage[] dogUp;
+    public static BufferedImage[] dogDown;
+
 
     /*! \fn public static void Init()
         \brief Functia initializaza referintele catre elementele grafice utilizate.
@@ -57,6 +62,7 @@ public class Assets {
         SpriteSheet sheet8 = new SpriteSheet(ImageLoader.LoadImage("/textures/fog.png"));
         SpriteSheet sheet9 = new SpriteSheet(ImageLoader.LoadImage("/textures/tiles.png"));
         SpriteSheet sheet10 = new SpriteSheet(ImageLoader.LoadImage("/textures/player.png"));
+        SpriteSheet sheet11 = new SpriteSheet(ImageLoader.LoadImage("/textures/level2Enemy.png"));
 
         fog = sheet8.crop(0,0);
         wall1 = sheet9.crop(4, 0);
@@ -69,6 +75,7 @@ public class Assets {
         door = new BufferedImage[2];
         door[0] = sheet2.crop(0, 0);
         door[1] = sheet3.crop(0, 0);
+
 
         startFinishDoor = new BufferedImage[2];
         startFinishDoor[0] = sheet7.crop(0, 0);
@@ -88,6 +95,28 @@ public class Assets {
         enemyDown = new BufferedImage[30];
         enemyLeft = new BufferedImage[30];
         enemyRight = new BufferedImage[30];
+
+        dogLeft = new BufferedImage[3];
+        dogRight = new BufferedImage[3];
+        dogUp = new BufferedImage[3];
+        dogDown = new BufferedImage[3];
+
+        dogDown[0] = sheet11.crop(0,0);
+        dogDown[1] = sheet11.crop(1, 0);
+        dogDown[2] = sheet11.crop(2, 0);
+
+        dogLeft[0] = sheet11.crop(3, 0);
+        dogLeft[1] = sheet11.crop(4, 0);
+        dogLeft[2] = sheet11.crop(5, 0);
+
+        dogRight[0]= sheet11.crop(6, 0);
+        dogRight[1]= sheet11.crop(7, 0);
+        dogRight[2] = sheet11.crop(8,0);
+
+        dogUp[0] = sheet11.crop(9,0);
+        dogUp[1] = sheet11.crop(10,0);
+        dogUp[2] = sheet11.crop(11,0);
+
 
         button = new BufferedImage[2];
         button[0] = sheet4.crop(0, 0);
