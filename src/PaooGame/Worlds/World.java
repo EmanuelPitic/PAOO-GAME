@@ -40,35 +40,26 @@ public class World {
         entityManager = new EntityManager(refLink, hero);
         this.fogOfWar = new FogOfWar(width, height, 1, 1);
         switch (Level.getInstance().getLevelNr()) {
-            case 1:
-            {
+            case 1: {
 
                 //Hero hero = new Hero(refLink, 32, 32);
-                isFogOfWar = true;
-                //hero.setSpeed(8);
-                Door door = new Door(refLink, 864, 96, true);
-                Button button = new Button(refLink, 896, 416, false);
-                MasterDoor masterDoor = new MasterDoor(refLink, 672, 480, true);
-                Key key = new Key(refLink, 864, 64, false);
+                isFogOfWar = false;
+
+                Door door = new Door(refLink, 736, 192, true);
+                Button button = new Button(refLink, 448, 416, false);
+                Key key = new Key(refLink, 736, 64, false);
                 StartFinishDoor startFinishDoor = new StartFinishDoor(refLink, 0, 32, true);
                 entityManager.addEntity(startFinishDoor);
                 entityManager.addEntity(door);
                 entityManager.addEntity(button);
                 entityManager.addEntity(key);
-                entityManager.addEntity(masterDoor);
-                Lever lever1 = new Lever(refLink, 608, 64, false);
-                Lever lever2 = new Lever(refLink, 480, 64, false);
-                Lever lever3 = new Lever(refLink, 416, 480, false);
-                entityManager.addEntity(lever1);
-                entityManager.addEntity(lever2);
-                entityManager.addEntity(lever3);
-                transparency = 0.5F;
+                transparency = 0.0F;
                 //harta este aici
 
                 try {
                     mapTiles = new int[height][width];
 
-                    File fisier = new File("map3.txt");
+                    File fisier = new File("map1.txt");
                     FileReader fr = new FileReader(fisier);
                     BufferedReader br = new BufferedReader(fr);
 
@@ -228,8 +219,7 @@ public class World {
                 // this.fogOfWar = new FogOfWar(width, height, 1, 1);
             }
             break;
-            case 3:
-            {
+            case 3: {
 
                 //Hero hero = new Hero(refLink, 32, 32);
                 isFogOfWar = true;
@@ -371,24 +361,25 @@ public class World {
         }
         entityManager.Render(g);
         if (isFogOfWar) {
-            boolean[][] visibleMatrix = new boolean[17][33];
-
-            for (int x = 0; x < height; x++) {
-                for (int y = 0; y < width; y++) {
-                    //GetTile(x, y).Draw(g, x * Tile.TILE_WIDTH, y * Tile.TILE_HEIGHT);
-                    if (isFogOfWar){
-                        if (!fogOfWar.isVisible(y, x)) {
-                            AlphaComposite ac = AlphaComposite.getInstance(AlphaComposite.SRC_OVER, transparency);
-                            ((Graphics2D) g).setComposite(ac);
-                            tileManager.getTile(0).Draw(g, x * Tile.TILE_WIDTH, y * Tile.TILE_HEIGHT);
-                            ac = AlphaComposite.getInstance(AlphaComposite.SRC_OVER, transparency);
-                            ((Graphics2D) g).setComposite(ac);
-                        }
+            if (Level.getInstance().getLevelNr() == 2) transparency = 0.25F;
+            if (Level.getInstance().getLevelNr() == 3) transparency = 0.75F;
+            for (int x = 1; x < height - 1; x++) {
+                for (int y = 1; y < width - 1; y++) {
+                    if (!fogOfWar.isVisible(y, x)) {
+                        AlphaComposite ac = AlphaComposite.getInstance(AlphaComposite.SRC_OVER, transparency);
+                        ((Graphics2D) g).setComposite(ac);
+                        tileManager.getTile(0).Draw(g, x * Tile.TILE_WIDTH, y * Tile.TILE_HEIGHT);
+                        ac = AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 1.0F);
+                        ((Graphics2D) g).setComposite(ac);
                     }
-
-
                 }
+
             }
+
+        }
+        ArrayList<Level3Enemy> cars = entityManager.getCars();
+        for (Level3Enemy car : cars) {
+            car.Render(g);
         }
         entityManager.getKey().Render(g);
 
