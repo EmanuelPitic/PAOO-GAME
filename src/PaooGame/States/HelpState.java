@@ -68,12 +68,13 @@ public class HelpState extends State
         finally {
             uiManager.Render(g);
 
-            Text.drawString(g,"Help the thief steal the most valuable item, the Golden Glove",120,90,Color.BLACK);
-            Text.drawString(g,"You need to know that when you touch one of the enemies, your life will decrease.",120,120,Color.BLACK);
-            Text.drawString(g,"You can move through the museum / houses using the arrow keys.  ",120,150,Color.BLACK);
-            Text.drawString(g,"You have to collect the Key(Glove-on the last level), and return back to spawn to win.  ",120,180,Color.BLACK);
-            Text.drawString(g,"If a door is locked, usually you can unlock it by pressing a button ;) ",120,240,Color.BLACK);
+            Text.drawString(g,"Help the thief steal the most valuable item, the Golden Glove",120,60,Color.BLACK);
+            Text.drawString(g,"You need to know that when you touch one of the enemies, your life will decrease.",120,90,Color.BLACK);
+            Text.drawString(g,"You can move through the museum / houses using the arrow keys.  ",120,120,Color.BLACK);
+            Text.drawString(g,"You have to collect the Key(Glove-on the last level), and return back to spawn to win.  ",120,150,Color.BLACK);
+            Text.drawString(g,"If a door is locked, usually you can unlock it by pressing a button ;) ",120,180,Color.BLACK);
             Text.drawString(g,"For the Master Door, you need to pull all the levers. ",120,210,Color.BLACK);
+            Text.drawString(g,"To save current state of the game, go in the Pause menu and press SAVE", 120, 240, Color.BLACK);
             g.drawImage(Assets.ar_UP,240,240,null);
             g.drawImage(Assets.ar_DOWN,240,310,null);
             g.drawImage(Assets.ar_LEFT,170,310,null);

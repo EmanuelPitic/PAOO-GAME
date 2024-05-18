@@ -58,6 +58,9 @@ public class Assets {
     public static BufferedImage thiefImage;
     public static BufferedImage gloveImage;
 
+    public static BufferedImage timer;
+    public static BufferedImage heart;
+
     public static BufferedImage[] pause_btn;
     public static BufferedImage[] help_btn;
     public static BufferedImage[] quit_btn;
@@ -69,6 +72,9 @@ public class Assets {
     public static BufferedImage[] settings_btn;
     public static BufferedImage[] musicOn_btn;
     public static BufferedImage[] musicOff_btn;
+    public static BufferedImage[] ok_btn;
+    public static BufferedImage[] save_btn;
+
 
     public static BufferedImage ar_UP;
     public static BufferedImage ar_DOWN;
@@ -100,6 +106,8 @@ public class Assets {
         SpriteSheet masterDoorSprite = new SpriteSheet(ImageLoader.LoadImage("/textures/masterDoor1.png"));
         SpriteSheet leverSprite = new SpriteSheet(ImageLoader.LoadImage("/textures/lever.png"));
         SpriteSheet policeCarSprite = new SpriteSheet(ImageLoader.LoadImage("/textures/policeCar.png"));
+        SpriteSheet okSprite = new SpriteSheet(ImageLoader.LoadImage("/textures/ok.png"));
+        SpriteSheet saveSprite = new SpriteSheet(ImageLoader.LoadImage("/textures/save.png"));
 
         fog = sheet8.crop(0,0);
 
@@ -130,6 +138,8 @@ public class Assets {
         menuBackground=ImageLoader.LoadImage("/textures/bgg.png");
         thiefImage=ImageLoader.LoadImage("/textures/thiefImage.png");
         gloveImage=ImageLoader.LoadImage("/textures/gloveImage.png");
+        timer=ImageLoader.LoadImage("/textures/timer.png");
+        heart = ImageLoader.LoadImage("/textures/heart.png");
 
         startFinishDoor = new BufferedImage[2];
         startFinishDoor[0] = sheet7.crop(0, 0);
@@ -232,6 +242,8 @@ public class Assets {
         settings_btn=new BufferedImage[2];
         musicOn_btn=new BufferedImage[2];
         musicOff_btn=new BufferedImage[2];
+        ok_btn=new BufferedImage[2];
+        save_btn=new BufferedImage[2];
 
         resume[0] = resumeSprite.Crop(0,0,SpriteSheet.tileWidth*4,SpriteSheet.tileHeight);
         resume[1] = resumeSprite.Crop(4,0,SpriteSheet.tileWidth*4,SpriteSheet.tileHeight);
@@ -263,10 +275,16 @@ public class Assets {
         musicOff_btn[0]=buttons.Crop(0,8,SpriteSheet.tileWidth*4,SpriteSheet.tileHeight);
         musicOff_btn[1]=buttons.Crop(4,8,SpriteSheet.tileWidth*4,SpriteSheet.tileHeight);
 
+        save_btn[0]=saveSprite.Crop(0,0,SpriteSheet.tileWidth*4,SpriteSheet.tileHeight);
+        save_btn[1]=saveSprite.Crop(4,0,SpriteSheet.tileWidth*4,SpriteSheet.tileHeight);
+
         ar_RIGHT=arrows.Crop(0,0,SpriteSheet.tileWidth*2,SpriteSheet.tileHeight*2);
         ar_UP=arrows.Crop(2,0,SpriteSheet.tileWidth*2,SpriteSheet.tileHeight*2);
         ar_LEFT=arrows.Crop(4,0,SpriteSheet.tileWidth*2,SpriteSheet.tileHeight*2);
         ar_DOWN=arrows.Crop(6,0,SpriteSheet.tileWidth*2,SpriteSheet.tileHeight*2);
+
+        ok_btn[0]=okSprite.Crop(0,0,SpriteSheet.tileWidth*4,SpriteSheet.tileHeight);
+        ok_btn[1]=okSprite.Crop(4,0,SpriteSheet.tileWidth*4,SpriteSheet.tileHeight);
 
 
         /// Se obtin subimaginile corespunzatoare elementelor necesare.

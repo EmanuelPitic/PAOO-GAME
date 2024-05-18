@@ -5,6 +5,7 @@ import PaooGame.Graphics.Text;
 import PaooGame.Level.Level;
 import PaooGame.RefLinks;
 //import PaooGame.Timer.Timer;
+import PaooGame.Timer.Timer;
 import PaooGame.UI.ClickListener;
 import PaooGame.UI.UIImageButton;
 import PaooGame.UI.UIManager;
@@ -19,13 +20,17 @@ import java.awt.*;
 public class PlayState extends State{
 
     private World world; /*!< O referinta catre harta jocului.*/
-
+    boolean isLoaded = false;
+    String cuv;
     public static final int DEFAULT_COUNTDOWN=60;
     public static int countdown=DEFAULT_COUNTDOWN; /*!< Numarul de secunde alocate pt fiecare nivel.*/
-    //private Timer timer;            /*!< Referinta catre un obiect de tip timer ce contorizeaza scurgerea timpului pt fiecare nivel.*/
+    private Timer timer;            /*!< Referinta catre un obiect de tip timer ce contorizeaza scurgerea timpului pt fiecare nivel.*/
     Level lvl=Level.getInstance();  /*!< Referinta catre un obiect de tip nivel.*/
 
-  // public static Timer timer2;           /*!< Timer pentru afisare text inainte de trecerea la alt nivel.*/
+    public static Timer timer2;           /*!< Timer pentru afisare text inainte de trecerea la alt nivel.*/
+    public static int timeInGame = 0;
+
+
     private int freezeCountdown;
     private int freezeLevel;
 
@@ -35,11 +40,11 @@ public class PlayState extends State{
 
         \param refLink O referinta catre un obiect "shortcut", obiect ce contine o serie de referinte utile in program.
      */
-    public PlayState(RefLinks refLink){
+  /*  public PlayState(RefLinks refLink){
 
         super(refLink);
-        //timer2=new Timer(0);
-       // timer=new Timer(1000);
+        timer2=new Timer(0);
+        timer=new Timer(1000);
         world=new World(refLink);
         refLink.SetWorld(world);
 
@@ -96,6 +101,77 @@ public class PlayState extends State{
             }
         }));
 
+    }*/
+    public PlayState(RefLinks refLink, boolean load){
+        super(refLink);
+        isLoaded=load;
+        timer2=new Timer(0);
+        timer=new Timer(1000);
+        if(load) {
+            cuv = "asd/3/38/75/24.0/373.0/30/false/true/false/true/false/true/false/384.0/32.0/23/true/3/328.0/32.0/95/true/3/224.0/460.0/1/false/1/160.0/52.0/1/false/3/96.0/460.0/1/false/1/64.0/52.0/1/false/3/640.0/408.0/47/true/1/784.0/180.0/209/false/2/992.0/88.0/65/false/1/480.0/480.0/281/false/1/576.0/296.0/33/false/3/";
+            world = new World(refLink, cuv);
+            refLink.SetWorld(world);
+        }
+        else
+        {
+            world=new World(refLink);
+            refLink.SetWorld(world);
+        }
+
+       // countdown=42;
+       // timeInGame=82;
+        uiManager=new UIManager(refLink);
+        refLink.GetMouseManager().setUIManager(uiManager);
+
+
+        uiManager.addObject(new UIImageButton(300, 0, 192, 32, Assets.pause_btn, new ClickListener() {
+            @Override
+            public void onClick() {
+                refLink.GetMouseManager().setUIManager(refLink.GetGame().getPauseState().getUiManager());
+                State.SetState(refLink.GetGame().getPauseState());
+                //refLink.GetGame().getDisplay().GetFrame().requestFocusInWindow();
+            }
+        }));
+
+
+        uiManager.addObject(new UIImageButton(500, 0, 192, 32, Assets.quit_btn, new ClickListener() {
+            @Override
+            public void onClick() {
+                refLink.GetMouseManager().setUIManager(refLink.GetGame().getMenuState().getUiManager());
+                State.SetState(refLink.GetGame().getMenuState());
+                /// atunci cand butonul "Exit" este apasat, va fi afisat meniul,
+                /// dupa care o eventuala apasare a butonului  "Start" va relua
+                /// jocul de la primul nivel
+                //level=0;
+                //changeLevel=true;
+                //lvl.setLevel(0);
+               // lvl.setChangeLevel(true);
+
+
+                // refLink.GetGame().getDisplay().GetFrame().requestFocusInWindow();
+            }
+        }));
+
+
+        uiManager.addObject(new UIImageButton(700, 0, 192, 32, Assets.help_btn, new ClickListener() {
+            @Override
+            public void onClick() {
+                refLink.GetMouseManager().setUIManager(refLink.GetGame().getHelpState().getUiManager());
+                State.SetState(refLink.GetGame().getHelpState());
+                //  refLink.GetGame().getDisplay().GetFrame().requestFocusInWindow();
+
+            }
+        }));
+        uiManager.addObject(new UIImageButton(900, 0, 192, 32, Assets.settings_btn, new ClickListener() {
+            @Override
+            public void onClick() {
+                refLink.GetMouseManager().setUIManager(refLink.GetGame().getSettingsState().getUiManager());
+                State.SetState(refLink.GetGame().getSettingsState());
+                //  refLink.GetGame().getDisplay().GetFrame().requestFocusInWindow();
+
+            }
+        }));
+
     }
 
 
@@ -108,10 +184,20 @@ public class PlayState extends State{
         refLink.SetWorld(world);
     }
 
+    public void SetWorld(boolean isLoad)
+    {
+        if(isLoad)
+        {
+            world=new World(refLink, "asd/3/38/75/24.0/373.0/30/false/true/false/true/false/true/false/384.0/32.0/23/true/3/328.0/32.0/95/true/3/224.0/460.0/1/false/1/160.0/52.0/1/false/3/96.0/460.0/1/false/1/64.0/52.0/1/false/3/640.0/408.0/47/true/1/784.0/180.0/209/false/2/992.0/88.0/65/false/1/480.0/480.0/281/false/1/576.0/296.0/33/false/3/");
+            refLink.SetWorld(world);
+        }
+        else{
+            world=new World(refLink);
+            refLink.SetWorld(world);
+        }
+    }
 
-    /*! \fn public void Update()
-       \brief Actualizeaza starea curenta a jocului.
-    */
+
     @Override
     public void Update() {
         uiManager.Update();
@@ -119,21 +205,24 @@ public class PlayState extends State{
         verify();
         world.Update();
 
-/*        if(timer.TimePassed()){
+       if(timer.TimePassed()){
             countdown--;
+            timeInGame++;
             timer.SetDelay(1000);
         }
 
         if(countdown==0)
         {
+            System.out.println(timeInGame);
             refLink.GetMouseManager().setUIManager(refLink.GetGame().getGameOverState().getUiManager());
             lvl.setLevel(0);
             lvl.setChangeLevel(true);
             State.SetState(refLink.GetGame().getGameOverState());
-            refLink.GetGame().getDisplay().GetFrame().requestFocusInWindow();
-        }*/
-        if(refLink.GetWorld().getEntityManager().getHero().isDead())
+            //refLink.GetGame().getDisplay().GetFrame().requestFocusInWindow();
+        }
+        if(refLink.GetWorld().getEntityManager().getHero().getHealth()<=0  )
         {
+            System.out.println(timeInGame);
             refLink.GetMouseManager().setUIManager(refLink.GetGame().getGameOverState().getUiManager());
             lvl.setLevel(0);
             lvl.setChangeLevel(true);
@@ -149,6 +238,8 @@ public class PlayState extends State{
     /*! \fn private void verify()
          \brief Se verifica daca jocul s-a terminat sau ,in caz contrar, se trece la urmatorul nivel.
    */
+
+
     private void verify()
     {
         if (lvl.isChangeLevel() ) {
@@ -157,17 +248,36 @@ public class PlayState extends State{
                 freezeCountdown=countdown;
                 freezeLevel=lvl.getLevelNr();
             }
-
+            isLoaded=false;
             lvl.incLevel();
-            if (lvl.getLevelNr() < 4) {
-                SetWorld();
+            if(lvl.getLevelNr()==1)
+            {
+              //  System.out.println(timeInGame);
+                timeInGame=0;
+                SetWorld(isLoaded);
                 countdown=60;
                 lvl.setChangeLevel(false);
-            } else {
-                /// jocul a fost finalizat cu succes si se revine in MenuState pentru a se relua, la cerere
-                refLink.GetMouseManager().setUIManager(refLink.GetGame().getMenuState().getUiManager());
+            }
+            else if (lvl.getLevelNr() == 2) {
+                System.out.println(timeInGame);
+                SetWorld(isLoaded);
+                countdown=60;
+                lvl.setChangeLevel(false);
+
+            }
+            else if (lvl.getLevelNr() == 3) {
+                System.out.println(timeInGame);
+                SetWorld(isLoaded);
+                countdown=80;
+                lvl.setChangeLevel(false);
+            }
+            else {
+                //System.out.println(timeInGame);
+                //jocul a fost finalizat cu succes si se revine in MenuState pentru a se relua, la cerere
+                System.out.println(timeInGame);
                 lvl.setLevel(0);
-                State.SetState(refLink.GetGame().getMenuState());
+                State.SetState(refLink.GetGame().getGameWonState());
+                refLink.GetMouseManager().setUIManager(refLink.GetGame().getGameWonState().getUiManager());
                // refLink.GetGame().getDisplay().GetFrame().requestFocusInWindow();
 
             }
@@ -189,10 +299,15 @@ public class PlayState extends State{
         uiManager.Render(g);
 
         lvl.Render(g);
-        //timer.Render(g);
+        timer.Render(g);
+        try{
+            g.drawImage(Assets.heart,200,0,32,32,null);
+        }
+        catch (Exception e){
+            System.out.println("Exception occured "+e);
+        }
 
-
-/*        if(notify){
+ /*       if(notify){
            // System.out.println("Old record: "+SQL.getInstance().getHighScore(Level.getInstance().getLevelNr()));
             //System.out.println("New score record at level: "+Level.getInstance().getLevelNr()+" : "+PlayState.countdown);
 
@@ -202,10 +317,10 @@ public class PlayState extends State{
 
 
 
-        }
+        }*/
         if(timer2.TimePassed())
-            notify=false;*/
-
+            notify=false;
+        Text.drawString(g,""+countdown,30,20,Color.WHITE);
         Text.drawString(g,""+refLink.GetWorld().getEntityManager().getHero().getHealth(),240,20,Color.WHITE);
     }
 

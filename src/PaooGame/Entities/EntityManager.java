@@ -1,5 +1,6 @@
 package PaooGame.Entities;
 
+import PaooGame.Level.Level;
 import PaooGame.RefLinks;
 
 import java.awt.*;
@@ -252,6 +253,55 @@ public class EntityManager {
                 cars.add((Level3Enemy) e);
         }
         return cars;//nu se ajunge aici
+    }
+
+
+    public ArrayList<Lever> getLevers()
+    {
+        ArrayList<Lever> levers = new ArrayList<>();
+        for (Entity e:entities)
+        {
+            if (e instanceof Lever)
+                levers.add((Lever) e);
+        }
+        return levers;//nu se ajunge aici
+
+    }
+    public ArrayList<Enemy> getEnemies()
+    {
+        ArrayList<Enemy> enemies = new ArrayList<>();
+        for (Entity e:entities)
+        {
+            if (e instanceof Enemy)
+                enemies.add((Enemy) e);
+        }
+        return enemies;//nu se ajunge aici
+
+    }
+
+
+    @Override
+    public String toString() {
+        //salvam datele, prima data pentru obiectele statice, in ordine: buton, usa, cheie, StartFinishDoor, Lever? si MasterDoor?
+        StringBuilder toReturn = new StringBuilder();
+        toReturn.append(getButton().isPressed()).append('/')
+                .append(getDoor().isSolid()).append('/')
+                .append(getKey().isColected()).append('/')
+                .append(getStartFinishDoor().isSolid()).append('/');
+        if(Level.getInstance().getLevelNr()==3)
+        {
+            ArrayList<Lever> levers = getLevers();
+            for (Lever lever:levers){
+                toReturn.append(lever.isPulled()).append('/');
+            }
+
+        }
+        ArrayList<Enemy> enemies = getEnemies();
+        for (Enemy e : enemies)
+        {
+            toReturn.append(e.toString());
+        }
+        return toReturn.toString();
     }
 
 

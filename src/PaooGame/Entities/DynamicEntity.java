@@ -178,7 +178,7 @@ trebuie rescris mult cod, ramane pentru etapa urmatoare
                 if (!lever.isPulled())
                 {
                     if( lever.getY()/32 == x && lever.getX()/32 == y){
-                        lever.setPooled(true);
+                        lever.setPulled(true);
                     }
                     else {
                         arePooled = false;

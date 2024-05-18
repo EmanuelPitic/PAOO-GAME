@@ -161,4 +161,15 @@ public class Hero extends DynamicEntity {
         return health;
     }
 
+    public void setHealth(int newHealth){
+        health=newHealth;
+    }
+
+    @Override
+    public String toString(){
+        StringBuilder toReturn = new StringBuilder();
+        toReturn.append(getX()).append('/').append(getY()).append('/').append(getHealth()).append('/');
+        return toReturn.toString();
+    }
+
 }

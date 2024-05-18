@@ -24,7 +24,7 @@ public class Lever extends StaticEntity {
         bounds.y=0;
         bounds.width=width;
         bounds.height=height;
-        setPooled(false);
+        setPulled(false);
     }
 
     /// actualizarea starii curente
@@ -46,5 +46,5 @@ public class Lever extends StaticEntity {
 
     public boolean isPulled() {return pulled;}
 
-    public void setPooled(boolean pulled) {this.pulled = pulled;}
+    public void setPulled(boolean pulled) {this.pulled = pulled;}
 }

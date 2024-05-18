@@ -3,10 +3,12 @@ package PaooGame.States;
 
 import PaooGame.Graphics.Assets;
 import PaooGame.Graphics.Text;
+import PaooGame.Level.Level;
 import PaooGame.RefLinks;
 import PaooGame.UI.ClickListener;
 import PaooGame.UI.UIImageButton;
 import PaooGame.UI.UIManager;
+import PaooGame.Worlds.World;
 
 import java.awt.*;
 
@@ -32,11 +34,11 @@ public class MenuState extends State
         uiManager.addObject(new UIImageButton(450, 230, 192, 64, Assets.newGame_btn, new ClickListener() {
             @Override
             public void onClick() {
+                //refLink.SetWorld(new World(refLink));
+                Level.getInstance().setLevel(0);
+                Level.getInstance().setChangeLevel(true);
                 refLink.GetMouseManager().setUIManager(refLink.GetGame().getPlayState().getUiManager());
-                State.SetState(refLink.GetGame().getPlayState());
-                //refLink.GetGame().getDisplay().GetFrame().requestFocusInWindow();
-                //SQL.getInstance().deleteALL();
-
+                State.SetState(refLink.GetGame().playState = new PlayState(refLink, false));
             }
         }));
 
@@ -44,7 +46,11 @@ public class MenuState extends State
             @Override
             public void onClick() {
                 refLink.GetMouseManager().setUIManager(refLink.GetGame().getPlayState().getUiManager());
-                State.SetState(refLink.GetGame().getPlayState());
+                //refLink.SetWorld(new World(refLink, "dfas/3/7/73/132.0/380.0/30/false/true/false/true/false/false/false/576.0/444.0/70/false/3/508.0/288.0/158/false/2/992.0/120.0/58/true/3/704.0/224.0/86/false/1/640.0/432.0/50/true/1/64.0/292.0/26/true/1/96.0/220.0/26/true/3/160.0/292.0/26/true/1/224.0/220.0/26/true/3/288.0/292.0/26/true/1/424.0/32.0/118/false/1/"));
+                //refLink.SetWorld(new World(refLink, "as/1/30/15/24.0/77.0/20/true/false/true/false/608.0/340.0/109/true/1/"));
+                State.SetState(refLink.GetGame().playState = new PlayState(refLink, true));
+                //refLink.SetWorld(new World(refLink, "dfas/3/7/73/132.0/380.0/30/false/true/false/true/false/false/false/576.0/444.0/70/false/3/508.0/288.0/158/false/2/992.0/120.0/58/true/3/704.0/224.0/86/false/1/640.0/432.0/50/true/1/64.0/292.0/26/true/1/96.0/220.0/26/true/3/160.0/292.0/26/true/1/224.0/220.0/26/true/3/288.0/292.0/26/true/1/424.0/32.0/118/false/1/"));
+                //Level.getInstance().setChangeLevel(false);
               //  refLink.GetGame().getDisplay().GetFrame().requestFocusInWindow();
 
             }

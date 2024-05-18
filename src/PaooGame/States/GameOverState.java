@@ -77,7 +77,7 @@ public class GameOverState extends State
         }
         finally {
             g.setFont(new Font("Algerian", Font.BOLD, 100));
-            Text.drawString(g,"GAME  OVER",250,100,Color.BLACK);
+            Text.drawString(g,"GAME  OVER",225,100,Color.BLACK);
 
             g.setFont(new Font("Arial", Font.BOLD, 60));
             Text.drawString(g,"You lose!",250,200,Color.BLACK);

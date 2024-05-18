@@ -3,6 +3,7 @@ package PaooGame.States;
 
 import PaooGame.Graphics.Assets;
 import PaooGame.Graphics.Text;
+import PaooGame.Level.Level;
 import PaooGame.RefLinks;
 import PaooGame.UI.ClickListener;
 import PaooGame.UI.UIImageButton;
@@ -33,6 +34,25 @@ public class PauseState extends State
 
             }
         }));
+        uiManager.addObject(new UIImageButton(380, 420, 128, 32, Assets.save_btn, new ClickListener() {
+            @Override
+            public void onClick() {
+                //refLink.GetMouseManager().setUIManager(State.GetPreviousState().getUiManager());
+                //State.SetState(State.GetPreviousState());
+                // refLink.GetGame().getDisplay().GetFrame().requestFocusInWindow();
+                StringBuilder toSave=new StringBuilder();
+                //salvam prima data numele in string
+                toSave.append(refLink.GetGame().getStateSetPlayerState().toString()).append('/')
+                        .append(Level.getInstance().getLevelNr()).append('/') //nr nivelului
+                        .append(PlayState.timeInGame).append('/')//scorul
+                        .append(PlayState.countdown).append('/')
+                        .append(refLink.GetWorld().getEntityManager().getHero().toString())//despre unde e eroul
+                        .append(refLink.GetWorld().getEntityManager().toString());
+                System.out.println(toSave.toString());
+
+            }
+        }));
+
     }
     /*! \fn public void Update()
         \brief Actualizeaza starea curenta pentru Pause State.

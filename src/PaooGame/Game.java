@@ -1,12 +1,13 @@
 package PaooGame;
 
-import PaooGame.Display.Display;
+//import PaooGame.Display.Display;
 import PaooGame.Entities.Hero;
 //import PaooGame.Entities.EntityManager;
 import PaooGame.GameWindow.GameWindow;
 import PaooGame.Graphics.Assets;
 import PaooGame.Input.KeyManager;
 import PaooGame.Input.MouseManager;
+import PaooGame.Input.NameInputManager;
 import PaooGame.States.*;
 import PaooGame.Tiles.Tile;
 import PaooGame.Tiles.TileManager;
@@ -52,6 +53,7 @@ import java.awt.image.BufferStrategy;
 public class Game implements Runnable {
     //Input
     private final KeyManager keyManager;  //!< Referinta catre obiectul care gestioneaza intrarile de la tastatura din partea utilizatorului./
+    public final NameInputManager nameInputManager;
     private final MouseManager mouseManager;//!< Referinta catre obiectul care gestioneaza intrarile de la mouse din partea utilizatorului./
     private GameWindow wnd;       //!< Fereastra in care se va desena tabla jocului/
     private boolean runState;   //!< Flag ce starea firului de executie./
@@ -73,12 +75,14 @@ public class Game implements Runnable {
 
     //States
     private State gameOverState;
-    private State playState; /*!< Referinta catre joc.*/
+    public State playState; /*!< Referinta catre joc.*/
     private State menuState; /*!< Referinta catre meniu.*/
     private State helpState; /*!< Referinta catre help.*/
     private State pauseState;/*!< Referinta catre pause.*/
     private State settingsState;/*!< Referinta catre settings.*/
-
+    private State gameWonState; /*!< Referinta catre Game won.*/
+    private State stateSetPlayerState;
+    private State loadPlayState;
 
     private Tile tile; //!< variabila membra temporara. Este folosita in aceasta etapa doar pentru a desena ceva pe ecran./
     private RefLinks refLink;   //!< O referinte catre un obiect "shortcut", obiect ce contine o serie de referinte utile in program./
@@ -95,6 +99,7 @@ public class Game implements Runnable {
 
         keyManager = new KeyManager();
         mouseManager = new MouseManager();
+        nameInputManager= new NameInputManager();
     }
 
     /*! \fn private void init()
@@ -109,6 +114,7 @@ public class Game implements Runnable {
         /// Este construita fereastra grafica.
         wnd.BuildGameWindow();
 
+        wnd.GetCanvas().addKeyListener(nameInputManager);
         wnd.GetCanvas().addKeyListener(keyManager);
         wnd.GetCanvas().addMouseListener(mouseManager);
         wnd.GetCanvas().addMouseMotionListener(mouseManager);
@@ -119,17 +125,20 @@ public class Game implements Runnable {
 
         refLink = new RefLinks(this);
 
-        playState = new PlayState(refLink);
+        playState = new PlayState(refLink, false);
         menuState = new MenuState(refLink);
         helpState = new HelpState(refLink);
         pauseState = new PauseState(refLink);
         gameOverState = new GameOverState(refLink);
         settingsState = new SettingsState(refLink);
+        gameWonState = new GameWonState(refLink);
+        stateSetPlayerState = new StateSetPlayerName(refLink);
+     //   loadPlayState = new PlayState(refLink, true);
 
 
-        refLink.GetMouseManager().setUIManager(menuState.getUiManager());
+        refLink.GetMouseManager().setUIManager(stateSetPlayerState.getUiManager());
 
-        State.SetState(menuState);
+        State.SetState(stateSetPlayerState);
     }
 
     /*! \fn public void run()
@@ -216,9 +225,9 @@ public class Game implements Runnable {
         Metoda este declarata privat deoarece trebuie apelata doar in metoda run()
      */
     private void Update() {
+        nameInputManager.Update();
         keyManager.Update();
         if (State.GetState() != null) State.GetState().Update();
-
     }
 
     /*! \fn private void Draw()
@@ -284,8 +293,20 @@ public class Game implements Runnable {
         return gameOverState;
     }
 
+    public State getGameWonState(){
+        return gameWonState;
+    }
+
     public State getSettingsState() {
         return settingsState;
+    }
+
+    public State getStateSetPlayerState(){
+        return stateSetPlayerState;
+    }
+
+    public State getLoadPlayState(){
+        return loadPlayState;
     }
 
 }

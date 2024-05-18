@@ -157,6 +157,17 @@ public class Enemy extends DynamicEntity {
         }
     }
 
+    public void setIndex(int index){
+        this.index = index;
+    }
+    public void setLastMove(int lastMove){
+        this.lastMove = lastMove;
+    }
+
+    public void setAsc(boolean asc){
+        this.asc = asc;
+    }
+
     @Override
     public void Render(Graphics g) {
 
@@ -164,4 +175,14 @@ public class Enemy extends DynamicEntity {
 
 
     }
+
+    @Override
+    public String toString()
+    {
+        StringBuilder toReturn = new StringBuilder();
+        toReturn.append(x).append('/').append(y).append('/');
+        toReturn.append(index).append('/').append(asc).append('/').append(lastMove).append('/');
+        return toReturn.toString();
+    }
+
 }

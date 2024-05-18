@@ -87,7 +87,7 @@ public class SettingsState extends State
 
         try {
             g.drawImage(Assets.menuBackground,-100,0,2000,544,null);
-            g.drawImage(Assets.thiefImage,800,300,200,200,null);
+            g.drawImage(Assets.thiefImage,875,300,200,200,null);
 
         }
         catch (Exception e){
