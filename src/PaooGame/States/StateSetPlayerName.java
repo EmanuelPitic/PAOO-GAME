@@ -38,12 +38,12 @@ public class StateSetPlayerName extends State {
         uiManager.addObject(new UIImageButton(450, 400, 192, 64, Assets.ok_btn, new ClickListener() {
             @Override
             public void onClick() {
-                refLink.GetMouseManager().setUIManager(refLink.GetGame().getMenuState().getUiManager());
+                refLink.GetMouseManager().setUIManager(refLink.GetGame().getPlayState().getUiManager());
                 playerName = nameInputManager.getName();
                 //System.out.println(nameInputManager.getName());
                 // Proceed to next state, for example, the game state
                 //refLink.GetMouseManager().setUIManager(null);
-                State.SetState(refLink.GetGame().getMenuState());
+                State.SetState(refLink.GetGame().playState = new PlayState(refLink, false, ""));
             }
         }));
 

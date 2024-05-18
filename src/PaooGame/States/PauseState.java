@@ -10,6 +10,7 @@ import PaooGame.UI.UIImageButton;
 import PaooGame.UI.UIManager;
 
 import java.awt.*;
+import java.lang.management.PlatformLoggingMXBean;
 
 /*! \public class PauseState extends State
     \brief Implementeaza notiunea de pauza pentru joc.
@@ -44,8 +45,8 @@ public class PauseState extends State
                 //salvam prima data numele in string
                 toSave.append(refLink.GetGame().getStateSetPlayerState().toString()).append('/')
                         .append(Level.getInstance().getLevelNr()).append('/') //nr nivelului
-                        .append(PlayState.timeInGame).append('/')//scorul
-                        .append(PlayState.countdown).append('/')
+                        .append(refLink.GetGame().getPlayState2().getTimeInGame()).append('/')//scorul
+                        .append(refLink.GetGame().getPlayState2().getCountdown()).append('/')
                         .append(refLink.GetWorld().getEntityManager().getHero().toString())//despre unde e eroul
                         .append(refLink.GetWorld().getEntityManager().toString());
                 System.out.println(toSave.toString());
@@ -86,7 +87,7 @@ public class PauseState extends State
             Text.drawString(g,"YOUR GAME IS PAUSED",100,200,Color.BLACK);
 
             g.setFont(new Font("Arial", Font.BOLD, 40));
-            Text.drawString(g,"Time remained: "+PlayState.countdown,100,300,Color.BLACK);
+            Text.drawString(g,"Time remained: "+refLink.GetGame().getPlayState2().getCountdown(),100,300,Color.BLACK);
             g.setFont(new Font("Arial", Font.BOLD, 20));
             Text.drawString(g,"RESUME ->",80,450,Color.BLACK);
         }

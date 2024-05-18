@@ -16,6 +16,9 @@ import PaooGame.Worlds.World;
 
 import java.awt.*;
 import java.awt.image.BufferStrategy;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 /*! \class Game
     \brief Clasa principala a intregului proiect. Implementeaza Game - Loop (Update -> Draw)
@@ -74,15 +77,16 @@ public class Game implements Runnable {
     private Graphics g;          //!< Referinta catre un context grafic./
 
     //States
-    private State gameOverState;
+    public State gameOverState;
     public State playState; /*!< Referinta catre joc.*/
     private State menuState; /*!< Referinta catre meniu.*/
     private State helpState; /*!< Referinta catre help.*/
     private State pauseState;/*!< Referinta catre pause.*/
     private State settingsState;/*!< Referinta catre settings.*/
-    private State gameWonState; /*!< Referinta catre Game won.*/
-    private State stateSetPlayerState;
-    private State loadPlayState;
+    public State gameWonState; /*!< Referinta catre Game won.*/
+    public State stateSetPlayerState;
+   // private State loadPlayState;
+    public State stateSelectSave;
 
     private Tile tile; //!< variabila membra temporara. Este folosita in aceasta etapa doar pentru a desena ceva pe ecran./
     private RefLinks refLink;   //!< O referinte catre un obiect "shortcut", obiect ce contine o serie de referinte utile in program./
@@ -120,25 +124,33 @@ public class Game implements Runnable {
         wnd.GetCanvas().addMouseMotionListener(mouseManager);
 
 
+
         /// Se incarca toate elementele grafice (dale)
         Assets.Init();
 
         refLink = new RefLinks(this);
 
-        playState = new PlayState(refLink, false);
+        playState = new PlayState(refLink, false, "");
         menuState = new MenuState(refLink);
         helpState = new HelpState(refLink);
         pauseState = new PauseState(refLink);
-        gameOverState = new GameOverState(refLink);
+        gameOverState = new GameOverState(refLink, false);
         settingsState = new SettingsState(refLink);
-        gameWonState = new GameWonState(refLink);
+        gameWonState = new GameWonState(refLink, false);
         stateSetPlayerState = new StateSetPlayerName(refLink);
+
+
+
+
+
+       // StateSelectSave selectSaveState = new StateSelectSave(refLink);
+        //stateSelectSave = new StateSelectSave(refLink);
      //   loadPlayState = new PlayState(refLink, true);
 
 
-        refLink.GetMouseManager().setUIManager(stateSetPlayerState.getUiManager());
+        refLink.GetMouseManager().setUIManager(menuState.getUiManager());
 
-        State.SetState(stateSetPlayerState);
+        State.SetState(menuState);
     }
 
     /*! \fn public void run()
@@ -277,6 +289,10 @@ public class Game implements Runnable {
         return playState;
     }
 
+    public PlayState getPlayState2(){
+        return (PlayState) playState;
+    }
+
     public State getMenuState() {
         return menuState;
     }
@@ -305,8 +321,15 @@ public class Game implements Runnable {
         return stateSetPlayerState;
     }
 
-    public State getLoadPlayState(){
+/*    public State getLoadPlayState(){
         return loadPlayState;
+    }*/
+
+    public State getStateSelectSave(){
+        return stateSelectSave;
+    }
+    public GameWindow getWnd(){
+        return wnd;
     }
 
 }

@@ -48,7 +48,7 @@ public class Level {
 */
     public void Render(Graphics g){
         /// se afiseaza nr nivelului actual
-        Text.drawString(g,"LEVEL "+Integer.toString(Level.getInstance().getLevelNr()),100,20,Color.WHITE);
+        Text.drawString(g,"LEVEL "+Integer.toString(Level.getInstance().getLevelNr()),140,20,Color.WHITE);
     }
 
     /// Getters & Setters pt atribute.

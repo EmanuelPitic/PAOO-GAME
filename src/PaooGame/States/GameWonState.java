@@ -23,7 +23,7 @@ public class GameWonState extends State
 
         \param refLink O referinta catre un obiect "shortcut", obiect ce contine o serie de referinte utile in program.
      */
-    public GameWonState(RefLinks refLink)
+    public GameWonState(RefLinks refLink, boolean isLoaded)
     {
         super(refLink);
         uiManager=new UIManager(refLink);
@@ -38,9 +38,14 @@ public class GameWonState extends State
                 /// atunci cand butonul "Exit" este apasat, va fi afisat meniul,
                 /// dupa care o eventuala apasare a butonului  "Start" va relua
                 /// jocul de la primul nivel
-
-                Level.getInstance().setLevel(0);
-                Level.getInstance().setChangeLevel(true);
+                if(!isLoaded)
+                {
+                    Level.getInstance().setLevel(0);
+                    Level.getInstance().setChangeLevel(true);
+                }
+                else {
+                    Level.getInstance().setChangeLevel(false);
+                }
 
 
                 //refLink.GetGame().getDisplay().GetFrame().requestFocusInWindow();

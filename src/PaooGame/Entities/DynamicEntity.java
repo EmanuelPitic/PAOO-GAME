@@ -142,7 +142,7 @@ trebuie rescris mult cod, ramane pentru etapa urmatoare
         }
         if (!refLink.GetWorld().getEntityManager().getStartFinishDoor().isSolid() && refLink.GetWorld().getEntityManager().getStartFinishDoor().getX()/32 == y && refLink.GetWorld().getEntityManager().getStartFinishDoor().getY()/32 == x)
         {
-            System.out.println("ai trecut nivelu");
+           // System.out.println("ai trecut nivelu");
            // Level.getInstance().incLevel();
             Level.getInstance().setChangeLevel(true);
             return false;

@@ -44,8 +44,6 @@ public abstract class State {
         }catch (NullContentException e){
             System.out.println("Nu se poate activa muzica de fundal.");
         }
-
-
     }
 
 

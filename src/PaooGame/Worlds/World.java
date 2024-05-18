@@ -320,17 +320,17 @@ public class World {
             }
             break;
             default:
-                System.out.println("Ai castigat!");
+                //System.out.println("Ai castigat!");
         }
 
     }
 
     public World(RefLinks refLink, String LoadWorld){
           String[] words = LoadWorld.split("/");
-        for (String word : words) {
+/*        for (String word : words) {
             System.out.println(word);
-        }
-
+        }*/
+        refLink.GetGame().getPlayState2().setCountdown(Integer.parseInt(words[2]));
         tileManager = new TileManager();
         this.refLink = refLink;
         width = 33;
@@ -339,8 +339,8 @@ public class World {
       //  System.out.println(Float.parseFloat(words[4])+' '+Float.parseFloat(words[5]));
       //  System.out.println(words[4]);
         //System.out.println(words[5]);
-        System.out.println(hero.getX());
-        System.out.println(hero.getY());
+        //System.out.println(hero.getX());
+       // System.out.println(hero.getY());
         hero.setHealth(Integer.parseInt(words[6]));
         entityManager = new EntityManager(refLink, hero);
         this.fogOfWar = new FogOfWar(width, height, (int)Float.parseFloat(words[4])/32, (int)Float.parseFloat(words[5])/32);
@@ -657,7 +657,7 @@ public class World {
             }
             break;
             default:
-                System.out.println("Ai castigat!");
+               // System.out.println("Ai castigat!");
         }
     }
 
