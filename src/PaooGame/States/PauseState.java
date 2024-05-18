@@ -5,6 +5,7 @@ import PaooGame.Graphics.Assets;
 import PaooGame.Graphics.Text;
 import PaooGame.Level.Level;
 import PaooGame.RefLinks;
+import PaooGame.SQLite.SQL;
 import PaooGame.UI.ClickListener;
 import PaooGame.UI.UIImageButton;
 import PaooGame.UI.UIManager;
@@ -50,7 +51,7 @@ public class PauseState extends State
                         .append(refLink.GetWorld().getEntityManager().getHero().toString())//despre unde e eroul
                         .append(refLink.GetWorld().getEntityManager().toString());
                 System.out.println(toSave.toString());
-
+                SQL.getInstance().insertPlayer(refLink.GetGame().getStateSetPlayerState().toString(), Level.getInstance().getLevelNr(), toSave.toString());
             }
         }));
 

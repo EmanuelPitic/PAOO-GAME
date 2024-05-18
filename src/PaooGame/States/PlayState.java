@@ -6,6 +6,7 @@ import PaooGame.Graphics.Text;
 import PaooGame.Level.Level;
 import PaooGame.RefLinks;
 //import PaooGame.Timer.Timer;
+import PaooGame.SQLite.SQL;
 import PaooGame.Timer.Timer;
 import PaooGame.UI.ClickListener;
 import PaooGame.UI.UIImageButton;
@@ -164,6 +165,7 @@ public class PlayState extends State{
         if(countdown==0)
         {
             //System.out.println(timeInGame);
+            SQL.getInstance().insertScore(refLink.GetGame().getStateSetPlayerState().toString(), score);
             refLink.GetMouseManager().setUIManager(refLink.GetGame().getGameOverState().getUiManager());
             if(!isLoadedForEndGame)
             {
@@ -178,6 +180,7 @@ public class PlayState extends State{
         }
         else if(refLink.GetWorld().getEntityManager().getHero().getHealth()<=0  )
         {
+            SQL.getInstance().insertScore(refLink.GetGame().getStateSetPlayerState().toString(), score);
             System.out.println(timeInGame);
             refLink.GetMouseManager().setUIManager(refLink.GetGame().getGameOverState().getUiManager());
             if(!isLoadedForEndGame)
@@ -240,6 +243,7 @@ public class PlayState extends State{
             else {
                 //System.out.println(timeInGame);
                 //jocul a fost finalizat cu succes si se revine in MenuState pentru a se relua, la cerere
+                SQL.getInstance().insertScore(refLink.GetGame().getStateSetPlayerState().toString(), score);
                 System.out.println(timeInGame);
                 State.SetState(refLink.GetGame().gameWonState = new GameWonState(refLink, isLoadedForEndGame));
                 refLink.GetMouseManager().setUIManager(refLink.GetGame().getGameWonState().getUiManager());
