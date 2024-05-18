@@ -33,7 +33,7 @@ public class PlayState extends State{
     public static Timer timer2;           /*!< Timer pentru afisare text inainte de trecerea la alt nivel.*/
     public int timeInGame = 0;
 
-    public int score = 1000;
+    public int score = 0;
     private int freezeCountdown;
     private int freezeLevel;
 
@@ -144,14 +144,20 @@ public class PlayState extends State{
     @Override
     public void Update() {
         uiManager.Update();
-        audioPlayer.Update(gameSettings);
+        refLink.GetGame().getAudioPlayer().Update(refLink.GetGame().getGameSettings());
         verify();
         world.Update();
 
        if(timer.TimePassed()){
+           if (isLoadedForEndGame) {
+               score=100-timeInGame;
+               score+=(lvl.getLevelNr()-1)*100;
+           }
+           else{
+               score=100-timeInGame;
+           }
             countdown--;
             timeInGame++;
-            score=1000-timeInGame;
             timer.SetDelay(1000);
         }
 
@@ -214,12 +220,14 @@ public class PlayState extends State{
                 SetWorld(isLoaded);
                 countdown=60;
                 lvl.setChangeLevel(false);
+                score+=100;
             }
             else if (lvl.getLevelNr() == 2) {
                 System.out.println(timeInGame);
                 SetWorld(isLoaded);
                 countdown=60;
                 lvl.setChangeLevel(false);
+                score+=100;
 
             }
             else if (lvl.getLevelNr() == 3) {
@@ -227,6 +235,7 @@ public class PlayState extends State{
                 SetWorld(isLoaded);
                 countdown=100;
                 lvl.setChangeLevel(false);
+                score+=100;
             }
             else {
                 //System.out.println(timeInGame);

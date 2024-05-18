@@ -23,8 +23,7 @@ public abstract class State {
     protected RefLinks refLink; /*!< O referinta catre un obiect "shortcut", obiect ce contine o serie de referinte utile in program.*/
     protected UIManager uiManager; /*!< O referinta catre managerul interfetei grafice.*/
 
-    protected static AudioPlayer audioPlayer;  /*!< Referinta catre un obiect de tip AudioPlayer utilizat pentru redarea sunetelor.*/
-    protected static GameSettings gameSettings; /*!< Referinta catre setarile jocului.*/
+
 
     protected  boolean notify; /*!< Flag ce anunta State-ul atunci cand trebuie afisat ceva pe ecran.*/
 
@@ -37,13 +36,7 @@ public abstract class State {
     */
     public State(RefLinks refLink){
         this.refLink=refLink;
-        audioPlayer=new AudioPlayer();
-        gameSettings=new GameSettings();
-        try{
-            audioPlayer.playMusic("sound1.wav");
-        }catch (NullContentException e){
-            System.out.println("Nu se poate activa muzica de fundal.");
-        }
+
     }
 
 

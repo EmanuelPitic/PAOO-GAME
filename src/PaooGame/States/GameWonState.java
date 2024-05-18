@@ -59,7 +59,7 @@ public class GameWonState extends State
     @Override
     public void Update()
     {
-        audioPlayer.Update(gameSettings);
+        //audioPlayer.Update(gameSettings);
         uiManager.Update();
     }
 

@@ -55,7 +55,7 @@ public class StateSetPlayerName extends State {
     @Override
     public void Update() {
 
-        audioPlayer.Update(gameSettings);
+        refLink.GetGame().getAudioPlayer().Update(refLink.GetGame().getGameSettings());
         uiManager.Update();
         nameInputManager.Update();
     }

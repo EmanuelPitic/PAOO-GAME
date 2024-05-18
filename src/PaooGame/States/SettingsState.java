@@ -38,7 +38,8 @@ public class SettingsState extends State
         uiManager.addObject(new UIImageButton(450, 230, 192, 64, Assets.musicOn_btn, new ClickListener() {
             @Override
             public void onClick() {
-                gameSettings.setMusic(true);
+                if(!refLink.GetGame().getGameSettings().isMusicON())
+                    refLink.GetGame().getGameSettings().setMusic(true);
                 //SQL.getInstance().addAudioStatus("music",1);
             }
         }));
@@ -48,7 +49,7 @@ public class SettingsState extends State
         uiManager.addObject(new UIImageButton(450, 300, 192, 64, Assets.musicOff_btn, new ClickListener() {
             @Override
             public void onClick() {
-                gameSettings.setMusic(false);
+                refLink.GetGame().getGameSettings().setMusic(false);
                // SQL.getInstance().addAudioStatus("music",0);
             }
         }));
@@ -71,7 +72,7 @@ public class SettingsState extends State
     @Override
     public void Update()
     {
-        audioPlayer.Update(gameSettings);
+        refLink.GetGame().getAudioPlayer().Update(refLink.GetGame().getGameSettings());
         uiManager.Update();
     }
 

@@ -1,13 +1,16 @@
 package PaooGame;
 
 //import PaooGame.Display.Display;
+import PaooGame.Audio.AudioPlayer;
 import PaooGame.Entities.Hero;
 //import PaooGame.Entities.EntityManager;
+import PaooGame.Exceptions.NullContentException;
 import PaooGame.GameWindow.GameWindow;
 import PaooGame.Graphics.Assets;
 import PaooGame.Input.KeyManager;
 import PaooGame.Input.MouseManager;
 import PaooGame.Input.NameInputManager;
+import PaooGame.Settings.GameSettings;
 import PaooGame.States.*;
 import PaooGame.Tiles.Tile;
 import PaooGame.Tiles.TileManager;
@@ -76,6 +79,9 @@ public class Game implements Runnable {
     private BufferStrategy bs;         //!< Referinta catre un mecanism cu care se organizeaza memoria complexa pentru un canvas./
     private Graphics g;          //!< Referinta catre un context grafic./
 
+    public AudioPlayer audioPlayer;  /*!< Referinta catre un obiect de tip AudioPlayer utilizat pentru redarea sunetelor.*/
+    public GameSettings gameSettings; /*!< Referinta catre setarile jocului.*/
+
     //States
     public State gameOverState;
     public State playState; /*!< Referinta catre joc.*/
@@ -87,6 +93,7 @@ public class Game implements Runnable {
     public State stateSetPlayerState;
    // private State loadPlayState;
     public State stateSelectSave;
+
 
     private Tile tile; //!< variabila membra temporara. Este folosita in aceasta etapa doar pentru a desena ceva pe ecran./
     private RefLinks refLink;   //!< O referinte catre un obiect "shortcut", obiect ce contine o serie de referinte utile in program./
@@ -104,6 +111,13 @@ public class Game implements Runnable {
         keyManager = new KeyManager();
         mouseManager = new MouseManager();
         nameInputManager= new NameInputManager();
+        audioPlayer=new AudioPlayer();
+        gameSettings=new GameSettings();
+        try{
+            audioPlayer.playMusic("sound1.wav");
+        }catch (NullContentException e){
+            System.out.println("Nu se poate activa muzica de fundal.");
+        }
     }
 
     /*! \fn private void init()
@@ -138,14 +152,6 @@ public class Game implements Runnable {
         settingsState = new SettingsState(refLink);
         gameWonState = new GameWonState(refLink, false);
         stateSetPlayerState = new StateSetPlayerName(refLink);
-
-
-
-
-
-       // StateSelectSave selectSaveState = new StateSelectSave(refLink);
-        //stateSelectSave = new StateSelectSave(refLink);
-     //   loadPlayState = new PlayState(refLink, true);
 
 
         refLink.GetMouseManager().setUIManager(menuState.getUiManager());
@@ -321,15 +327,19 @@ public class Game implements Runnable {
         return stateSetPlayerState;
     }
 
-/*    public State getLoadPlayState(){
-        return loadPlayState;
-    }*/
-
     public State getStateSelectSave(){
         return stateSelectSave;
     }
     public GameWindow getWnd(){
         return wnd;
+    }
+
+    public GameSettings getGameSettings() {
+        return gameSettings;
+    }
+
+    public AudioPlayer getAudioPlayer() {
+        return audioPlayer;
     }
 
 }
