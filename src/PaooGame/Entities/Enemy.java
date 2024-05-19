@@ -19,7 +19,10 @@ public class Enemy extends DynamicEntity {
     int index;
     boolean asc;
     int damage;
-    int lastx, lasty;
+    int lastx, lasty; //pentru coliziune
+    int lastHit = 0;
+
+
     public Enemy(RefLinks refLink, float x, float y, float[] moveX, float[] moveY, int damage) {
         super(refLink, x, y, DynamicEntity.DEFAULT_DynamicEntity_WIDTH, DynamicEntity.DEFAULT_DynamicEntity_HEIGHT, "Enemy");
         movex = moveX.clone();
@@ -40,10 +43,7 @@ public class Enemy extends DynamicEntity {
         bounds.width = 16;
         bounds.height = 16;
         lastx= (int)x/16;
-        lasty= (int)y/16;
-
-
-
+        lasty= (int)y/16; //calculeaza pentru coliziune
     }
 
     @Override
@@ -117,25 +117,17 @@ public class Enemy extends DynamicEntity {
             }
         }
 
-        if(lastx != (int)x/32 ||  lasty != (int)y/32){
+//ii stupid dar merge, cum se face damage-ul la erou
+        if(lastx != (int)x/32 ||  lasty != (int)y/32 || lastHit==0 || lastHit>=refLink.GetGame().getPlayState2().countdown+2){
             lastx = (int)x/32;
             lasty = (int)y/32;
-            if (  (int)refLink.GetWorld().getEntityManager().getHero().getX()/32 == (int)x/32 && (int)refLink.GetWorld().getEntityManager().getHero().getY()/32 == (int)y/32)
+            if (  (int)refLink.GetWorld().getEntityManager().getHero().getX()/16 == (int)x/16 && (int)refLink.GetWorld().getEntityManager().getHero().getY()/16 == (int)y/16)
             {
                 refLink.GetWorld().getEntityManager().getHero().damgaTaken(damage);
-                System.out.println("Coliziune intre caracter si enemy, trebuie implementat ecranul cu Game Lost");
-
-
+                lastHit=refLink.GetGame().getPlayState2().countdown;
             }
         }
-        //System.out.println(x+" "+refLink.GetWorld().getEntityManager().getHero().getX());
-        if (  (int)refLink.GetWorld().getEntityManager().getHero().getX()/16 == (int)x/16 && (int)refLink.GetWorld().getEntityManager().getHero().getY()/16 == (int)y/16)
-        {
 
-            System.out.println("Coliziune intre caracter si enemy, trebuie implementat ecranul cu Game Lost");
-
-
-        }
 
 
 

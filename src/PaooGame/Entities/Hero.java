@@ -59,8 +59,6 @@ public class Hero extends DynamicEntity {
     /// actualizarea pozitiei curente , precum si a animatiilor
     @Override
     public void Update() {
-        if (health == 0)
-            System.out.println("GAME OVER U ARE DED");
         GetInput();
         if(xMove!=0 || yMove!=0)
             {

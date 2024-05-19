@@ -37,8 +37,6 @@ public class MenuState extends State
         uiManager.addObject(new UIImageButton(450, 160, 192, 64, Assets.newGame_btn, new ClickListener() {
             @Override
             public void onClick() {
-
-                //refLink.SetWorld(new World(refLink));
                 Level.getInstance().setLevel(0);
                 Level.getInstance().setChangeLevel(true);
                 refLink.GetMouseManager().setUIManager(refLink.GetGame().getStateSetPlayerState().getUiManager());
@@ -69,8 +67,6 @@ public class MenuState extends State
             public void onClick() {
                 refLink.GetMouseManager().setUIManager(refLink.GetGame().getHelpState().getUiManager());
                 State.SetState(refLink.GetGame().getHelpState());
-               // refLink.GetGame().getDisplay().GetFrame().requestFocusInWindow();
-
             }
         }));
 
@@ -79,8 +75,6 @@ public class MenuState extends State
             public void onClick() {
                 refLink.GetMouseManager().setUIManager(refLink.GetGame().getSettingsState().getUiManager());
                 State.SetState(refLink.GetGame().getSettingsState());
-               // refLink.GetGame().getDisplay().GetFrame().requestFocusInWindow();
-
             }
         }));
 

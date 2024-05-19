@@ -41,9 +41,6 @@ public class Button extends StaticEntity {
             g.drawImage(Assets.button[1],(int)x,(int)y,width,height,null);
 
     }
-
-
-
     public boolean isPressed() {return pressed;}
 
     public void setPressed(boolean pressed) {this.pressed = pressed;}

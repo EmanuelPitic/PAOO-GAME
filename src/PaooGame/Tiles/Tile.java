@@ -18,7 +18,6 @@ public class Tile
 
     /*! \fn public Tile(BufferedImage texture, int id)
         \brief Constructorul aferent clasei.
-
         \param image Imaginea corespunzatoare dalei.
         \param id Id-ul dalei.
      */
@@ -39,7 +38,6 @@ public class Tile
 
     /*! \fn public void Draw(Graphics g, int x, int y)
         \brief Deseneaza in fereastra dala.
-
         \param g Contextul grafic in care sa se realizeze desenarea
         \param x Coordonata x in cadrul ferestrei unde sa fie desenata dala
         \param y Coordonata y in cadrul ferestrei unde sa fie desenata dala

@@ -11,12 +11,11 @@ import PaooGame.UI.UIManager;
 
 import java.awt.*;
 
-/*! \public class GameOverState extends State
-    \brief Implementeaza notiunea de game over.
+/*! \public class GameWonState extends State
+    \brief Implementeaza notiunea de game won.
  */
 public class GameWonState extends State
 {
-
 
     /*! \fn public GameOverState(RefLinks refLink)
         \brief Constructorul de initializare al clasei.
@@ -35,7 +34,7 @@ public class GameWonState extends State
                 refLink.GetMouseManager().setUIManager(refLink.GetGame().getMenuState().getUiManager());
                 State.SetState(refLink.GetGame().getMenuState());
 
-                /// atunci cand butonul "Exit" este apasat, va fi afisat meniul,
+                /// atunci cand butonul "back" este apasat, va fi afisat meniul,
                 /// dupa care o eventuala apasare a butonului  "Start" va relua
                 /// jocul de la primul nivel
                 if(!isLoaded)
@@ -46,13 +45,10 @@ public class GameWonState extends State
                 else {
                     Level.getInstance().setChangeLevel(false);
                 }
-
-
-                //refLink.GetGame().getDisplay().GetFrame().requestFocusInWindow();
-
             }
         }));
     }
+
     /*! \fn public void Update()
         \brief Actualizeaza starea curenta de game over.
      */
@@ -67,7 +63,6 @@ public class GameWonState extends State
 
     /*! \fn public void Draw(Graphics g)
         \brief Deseneaza (randeaza) pe ecran starea curenta a starii de game over.
-
         \param g Contextul grafic in care trebuie sa deseneze starea jocului pe ecran.
      */
     @Override
@@ -89,8 +84,5 @@ public class GameWonState extends State
             Text.drawString(g,"You WON!",250,200,Color.BLACK);
             uiManager.Render(g);
         }
-
-
-
     }
 }

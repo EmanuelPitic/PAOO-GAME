@@ -27,7 +27,6 @@ public abstract class Entity {
 
     /*! \fn Entity(RefLinks refLink, float x, float y, int width, int height, String name)
                 \brief Constructorul cu parametri al clasei Entity
-
                 \param reflink Referinta catre un obiect "shortcut"
                 \param x Pozitia pe axa X a imaginii entitatii
                 \param y Pozitia pe axa Y a imaginii entitatii
@@ -35,18 +34,15 @@ public abstract class Entity {
                 \param height Inaltimea imaginii entitatii
                 \param name Denumirea entitatii
     */
+
     public Entity(RefLinks refLink, float x, float y, int width, int height, String name)
     {
         this.refLink=refLink;
         this.x=x;
         this.y=y;
-
         this.width=width;
         this.height=height;
-
         this.name=name;
-
-
         bounds=new Rectangle(0,0,width,height);
     }
 
@@ -67,8 +63,6 @@ public abstract class Entity {
     {
         return new Rectangle((int)(x+bounds.x+xOffset),(int)(y+bounds.y+yOffset),bounds.width,bounds.height);
     }
-
-
 
     /// Getters & Setters pentru atribute
     public float getX() {
@@ -122,6 +116,5 @@ public abstract class Entity {
     public String getName() {
         return name;
     }
-
 
 }

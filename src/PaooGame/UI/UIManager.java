@@ -88,7 +88,6 @@ public class UIManager {
 
     /*! \fn public void removeObject(UIObject o)
             \brief Sterge un obiect existent.
-
             \param o Obiectul ce se sterge.
     */
     public void removeObject(UIObject o)

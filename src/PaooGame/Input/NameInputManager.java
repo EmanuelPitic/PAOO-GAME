@@ -5,26 +5,22 @@ import java.awt.event.KeyListener;
 import java.util.LinkedList;
 import java.util.Queue;
 
-/**
- * Manages keyboard input for the player's name.
+/*! \public class KeyManager implements KeyListener
+    \brief Gestioneaza intrarea (input-ul) de tastatura.
+    Clasa citeste daca au fost apasata o tasta, stabiliteste ce tasta a fost actionata si adauga la string asta
  */
 public class NameInputManager implements KeyListener {
     private StringBuilder currentName;
     private boolean[] keys;
     private Queue<Character> inputQueue;
 
-    /**
-     * Constructor initializes the current name, key states, and input queue.
-     */
     public NameInputManager() {
         currentName = new StringBuilder();
         keys = new boolean[256]; // Array to keep track of key states
         inputQueue = new LinkedList<>();
     }
 
-    /**
-     * Updates the input state and processes the queued inputs.
-     */
+
     public void Update() {
         //System.out.println("Input Name: " + currentName.toString()+' '+getName());
         while (!inputQueue.isEmpty()) {
@@ -40,7 +36,6 @@ public class NameInputManager implements KeyListener {
 
     @Override
     public void keyTyped(KeyEvent e) {
-        // No implementation needed for keyTyped
     }
 
     @Override
@@ -50,8 +45,6 @@ public class NameInputManager implements KeyListener {
             return;
         }
         keys[keyCode] = true;
-
-        // Queue the character for processing in the update method
         char keyChar = e.getKeyChar();
         inputQueue.offer(keyChar);
     }
@@ -65,10 +58,6 @@ public class NameInputManager implements KeyListener {
         keys[keyCode] = false;
     }
 
-    /**
-     * Gets the current player name.
-     * @return The current player name as a string.
-     */
     public String getName() {
         return currentName.toString();
     }

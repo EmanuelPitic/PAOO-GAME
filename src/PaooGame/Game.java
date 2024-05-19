@@ -1,9 +1,5 @@
 package PaooGame;
-
-//import PaooGame.Display.Display;
 import PaooGame.Audio.AudioPlayer;
-import PaooGame.Entities.Hero;
-//import PaooGame.Entities.EntityManager;
 import PaooGame.Exceptions.NullContentException;
 import PaooGame.GameWindow.GameWindow;
 import PaooGame.Graphics.Assets;
@@ -13,15 +9,11 @@ import PaooGame.Input.NameInputManager;
 import PaooGame.Settings.GameSettings;
 import PaooGame.States.*;
 import PaooGame.Tiles.Tile;
-import PaooGame.Tiles.TileManager;
-import PaooGame.*;
 import PaooGame.Worlds.World;
 
 import java.awt.*;
 import java.awt.image.BufferStrategy;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+
 
 /*! \class Game
     \brief Clasa principala a intregului proiect. Implementeaza Game - Loop (Update -> Draw)
@@ -63,7 +55,7 @@ public class Game implements Runnable {
     private final MouseManager mouseManager;//!< Referinta catre obiectul care gestioneaza intrarile de la mouse din partea utilizatorului./
     private GameWindow wnd;       //!< Fereastra in care se va desena tabla jocului/
     private boolean runState;   //!< Flag ce starea firului de executie./
-    // private Display display;/*!< Fereastra in care se va desena tabla jocului*/
+
     /// Sunt cateva tipuri de "complex buffer strategies", scopul fiind acela de a elimina fenomenul de
     /// flickering (palpaire) a ferestrei.
     /// Modul in care va fi implementata aceasta strategie in cadrul proiectului curent va fi triplu buffer-at
@@ -75,6 +67,7 @@ public class Game implements Runnable {
     /// [ Ecran ] <---- * Front Buffer *  <------ * Middle Buffer * <----- * Back Buffer * <---- Draw()
     ///                 *              *          *               *        *             *
     ///                 ****************          *****************        ***************
+
     private Thread gameThread; //!< Referinta catre thread-ul de update si draw al ferestrei/
     private BufferStrategy bs;         //!< Referinta catre un mecanism cu care se organizeaza memoria complexa pentru un canvas./
     private Graphics g;          //!< Referinta catre un context grafic./
@@ -90,14 +83,12 @@ public class Game implements Runnable {
     private State pauseState;/*!< Referinta catre pause.*/
     private State settingsState;/*!< Referinta catre settings.*/
     public State gameWonState; /*!< Referinta catre Game won.*/
-    public State stateSetPlayerState;
-   // private State loadPlayState;
-    public State stateSelectSave;
-    public State leaderBoardState;
+    public State stateSetPlayerState; /*!< Referinta catre Set player name.*/
+    public State stateSelectSave; /*!< Referinta catre Select Save.*/
+    public State leaderBoardState;  /*!< Referinta catre Leaderboard.*/
 
-    private Tile tile; //!< variabila membra temporara. Este folosita in aceasta etapa doar pentru a desena ceva pe ecran./
+
     private RefLinks refLink;   //!< O referinte catre un obiect "shortcut", obiect ce contine o serie de referinte utile in program./
-    //  private EntityManager entityManager; //!< Referinta catre un manager de entitati/
     private World world; //!< O referinta catre harta jocului./
 
     public Game(String title, int width, int height) {
@@ -137,8 +128,6 @@ public class Game implements Runnable {
         wnd.GetCanvas().addMouseListener(mouseManager);
         wnd.GetCanvas().addMouseMotionListener(mouseManager);
 
-
-
         /// Se incarca toate elementele grafice (dale)
         Assets.Init();
 
@@ -153,7 +142,6 @@ public class Game implements Runnable {
         gameWonState = new GameWonState(refLink, false);
         stateSetPlayerState = new StateSetPlayerName(refLink);
         leaderBoardState = new LeaderBoardState(refLink);
-
 
         refLink.GetMouseManager().setUIManager(menuState.getUiManager());
 
@@ -326,13 +314,6 @@ public class Game implements Runnable {
 
     public State getStateSetPlayerState(){
         return stateSetPlayerState;
-    }
-
-    public State getStateSelectSave(){
-        return stateSelectSave;
-    }
-    public GameWindow getWnd(){
-        return wnd;
     }
 
     public GameSettings getGameSettings() {

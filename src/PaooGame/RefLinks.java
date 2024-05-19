@@ -8,7 +8,6 @@ import PaooGame.Worlds.World;
 
 /*! \public class RefLinks
     \brief Clasa ce retine o serie de referinte ale unor elemente pentru a fi usor accesibile.
-
     Altfel ar trebui ca functiile respective sa aiba o serie intreaga de parametri si ar ingreuna programarea.
  */
 public class RefLinks
@@ -18,9 +17,9 @@ public class RefLinks
 
     /*! \fn public RefLinks(Game game)
         \brief Constructorul de initializare al clasei.
-
         \param game Referinta catre obiectul game.
      */
+
     public RefLinks(Game game)
     {
         this.game = game;
@@ -29,6 +28,7 @@ public class RefLinks
     /*! \fn public KeyManager GetKeyManager()
         \brief Returneaza referinta catre managerul evenimentelor de tastatura.
      */
+
     public KeyManager GetKeyManager()
     {
         return game.GetKeyManager();
@@ -41,31 +41,6 @@ public class RefLinks
     {
         return game.GetMouseManager();
     }
-
-    /*! \fn public int GetWidth()
-        \brief Returneaza latimea ferestrei jocului.
-     */
-/*
-    public int GetWidth()
-    {
-        return game.getWidth();
-    }
-*/
-
-
-
-    /*! \fn public int GetHeight()
-        \brief Returneaza inaltimea ferestrei jocului.
-     */
-
-/*
-    public int GetHeight()
-    {
-        return game.getHeight();
-    }
-*/
-
-
 
     /*! \fn public Game GetGame()
         \brief Intoarce referinta catre obiectul Game.
@@ -90,6 +65,7 @@ public class RefLinks
     /*! \fn public World GetWorld()
         \brief Intoarce referinta catre harta curenta.
      */
+
     public World GetWorld()
     {
         return world;

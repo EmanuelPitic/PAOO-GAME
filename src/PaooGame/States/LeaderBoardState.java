@@ -12,14 +12,14 @@ import PaooGame.UI.UIManager;
 import java.awt.*;
 import java.util.ArrayList;
 
-/*! \public class HelpState extends State
-    \brief Implementeaza notiunea de help pentru joc (explica ce are de facut eroul pentru a castiga)
+/*! \public class LeaderboardState extends State
+    \brief Implementeaza notiunea de LeaderBoard pentru joc
  */
 public class LeaderBoardState extends State
 {
 
 
-    /*! \fn public HelpState(RefLinks refLink)
+    /*! \fn public HLeaderBoardState(RefLinks refLink)
         \brief Constructorul de initializare al clasei.
 
         \param refLink O referinta catre un obiect "shortcut", obiect ce contine o serie de referinte utile in program.
@@ -30,16 +30,15 @@ public class LeaderBoardState extends State
         uiManager=new UIManager(refLink);
         refLink.GetMouseManager().setUIManager(uiManager);
 
-        uiManager.addObject(new UIImageButton(190, 420, 128, 32, Assets.back_btn, new ClickListener() {
+        uiManager.addObject(new UIImageButton(190, 460, 128, 32, Assets.back_btn, new ClickListener() {
             @Override
             public void onClick() {
                 refLink.GetMouseManager().setUIManager(State.GetPreviousState().getUiManager());
                 State.SetState(State.GetPreviousState());
-//refLink.GetGame().getDisplay().GetFrame().requestFocusInWindow();
-
             }
         }));
     }
+
     /*! \fn public void Update()
         \brief Actualizeaza starea curenta a starii de help.
      */
@@ -78,24 +77,15 @@ public class LeaderBoardState extends State
             g.setFont(new Font("Arial", Font.PLAIN, 40));
             int yOffset = 200;
             int i = 0;
-            Text.drawString(g,"Name",400,200,Color.BLACK);
+            Text.drawString(g,"Name",100,200,Color.BLACK);
             Text.drawString(g,"Score",600,200,Color.BLACK);
             for ( i = 0; i<3;i++) {
-                String[] data = highestScores.get(i).split(" ");
-                Text.drawString(g, data[0], 400, yOffset + 80, Color.BLACK);
-                Text.drawString(g, data[1] , 600, yOffset +80, Color.BLACK);
+
+                Text.drawString(g, highestScores.get(i).substring(0,highestScores.get(i).lastIndexOf(' ')), 100, yOffset + 80, Color.BLACK);
+                Text.drawString(g, highestScores.get(i).substring(highestScores.get(i).lastIndexOf(' ')) , 600, yOffset +80, Color.BLACK);
                 yOffset += 80;
-                //i++;
             }
-
-
             g.setFont(new Font("Arial", Font.PLAIN, 20));
-            //Text.drawString(g,"RESUME ->",40,450,Color.BLACK);
         }
-
-
-
-
-
     }
 }

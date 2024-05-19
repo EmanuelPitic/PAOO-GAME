@@ -32,16 +32,12 @@ public class PauseState extends State
             public void onClick() {
                 refLink.GetMouseManager().setUIManager(State.GetPreviousState().getUiManager());
                 State.SetState(State.GetPreviousState());
-               // refLink.GetGame().getDisplay().GetFrame().requestFocusInWindow();
-
             }
         }));
+
         uiManager.addObject(new UIImageButton(380, 420, 128, 32, Assets.save_btn, new ClickListener() {
             @Override
             public void onClick() {
-                //refLink.GetMouseManager().setUIManager(State.GetPreviousState().getUiManager());
-                //State.SetState(State.GetPreviousState());
-                // refLink.GetGame().getDisplay().GetFrame().requestFocusInWindow();
                 StringBuilder toSave=new StringBuilder();
                 //salvam prima data numele in string
                 toSave.append(refLink.GetGame().getStateSetPlayerState().toString()).append('/')
@@ -50,11 +46,9 @@ public class PauseState extends State
                         .append(refLink.GetGame().getPlayState2().getCountdown()).append('/')
                         .append(refLink.GetWorld().getEntityManager().getHero().toString())//despre unde e eroul
                         .append(refLink.GetWorld().getEntityManager().toString());
-                System.out.println(toSave.toString());
                 SQL.getInstance().insertPlayer(refLink.GetGame().getStateSetPlayerState().toString(), Level.getInstance().getLevelNr(), toSave.toString());
             }
         }));
-
     }
     /*! \fn public void Update()
         \brief Actualizeaza starea curenta pentru Pause State.
@@ -73,6 +67,7 @@ public class PauseState extends State
 
         \param g Contextul grafic in care trebuie sa deseneze starea jocului pe ecran.
      */
+
     @Override
     public void Render(Graphics g) {
         g.setFont(new Font("Arial", Font.BOLD, 60));
@@ -92,7 +87,6 @@ public class PauseState extends State
             g.setFont(new Font("Arial", Font.BOLD, 20));
             Text.drawString(g,"RESUME ->",80,450,Color.BLACK);
         }
-
 
     }
 }

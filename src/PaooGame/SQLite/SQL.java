@@ -6,7 +6,6 @@ import java.util.Date;
 
 /*! \public class SQL
     \brief Gestioneaza baza de date
-
     Aceasta clasa utilizeaza Singleton Pattern.
  */
 
@@ -52,8 +51,6 @@ public class SQL {
             System.err.println(e.getClass().getName() + ": " + e.getMessage());
             System.exit(0);
         }
-        System.out.println("Table created successfully");
-
     }
 
 
@@ -67,9 +64,6 @@ public class SQL {
         return instance;
     }
 
-    /*! \fn public void closeConnection()
-                \brief Inchide conexiunea cu baza de date.
-        */
 
     public void insertPlayer(String name, int level, String gameState){
         try{
@@ -170,60 +164,7 @@ public class SQL {
         } catch (SQLException e) {
             System.err.println(e.getClass().getName() + ": " + e.getMessage());
         }
-
         return gameStates;
     }
 
-    public void closeConnection() {
-        try {
-
-            stmt.close();
-            c.commit();
-            c.close();
-        } catch (Exception e) {
-            System.err.println(e.getClass().getName() + ": " + e.getMessage());
-            System.exit(0);
-        }
-    }
-
-    int getHighScore(){
-        try{
-            ResultSet rs = stmt.executeQuery("SELECT MAX(SCORE) FROM SCORE");
-            if(rs.next()){
-                return rs.getInt("SCORE");
-            }
-        }catch (Exception e){
-            System.err.println(e.getClass().getName() + ": " + e.getMessage());
-        }
-        return -1;
-    }
-
-
-
-  //  public void insertPlayer()
-
-
-    /*! \fn public void addAudioStatus(String audioType,int status)
-                  \brief Adauga in tabela pentru setari starea sunetelor/muzicii de fundal (ON/OFF)
-
-                  \param audioType Tipul audio al carui status este inserat in baza de date (music/sound)
-                  \param status Starea audio (ON/OFF)
-    */
-
-
-
-    public void deleteALL()
-    {
-        try{
-            String sql = "DELETE FROM PLAYER " ;
-
-            stmt.executeUpdate(sql);
-            c.commit();
-        }
-        catch (Exception e)
-        {
-            System.err.println(e.getClass().getName() + ": " + e.getMessage());
-            System.exit(0);
-        }
-    }
 }

@@ -48,7 +48,7 @@ public abstract class DynamicEntity extends Entity{
 
 /*
 Realistic, functia Move() si in special movx si movy vor fi mutate in clasa erou, dar pentru ca le am impelementat asa de la inceput
-trebuie rescris mult cod, ramane pentru etapa urmatoare
+trebuie rescris mult cod, ramane asa
  */
     public void Move()
     {
@@ -65,7 +65,7 @@ trebuie rescris mult cod, ramane pentru etapa urmatoare
 
             // coliziuni dreapta
             int posx=(int)(x+xMove+bounds.x+bounds.width)/ Tile.TILE_WIDTH;
-            //System.out.println(x+xMove);
+
             //coliziuni colt dreapta sus si jos ale dreptunghiului de coliziune
             if(!collisionWithTile(posx,(int)(y+bounds.y)/Tile.TILE_HEIGHT) && !collisionWithTile(posx,(int)(y+ bounds.y+bounds.height)/Tile.TILE_HEIGHT) && x+xMove>=0){
                 x+=xMove;
@@ -74,7 +74,7 @@ trebuie rescris mult cod, ramane pentru etapa urmatoare
         }else if (xMove<0){
             int posx=(int)(x+xMove+bounds.x)/ Tile.TILE_WIDTH;
             //coliziuni colt stanga sus si jos ale dreptunghiului de coliziune
-            //System.out.println(x+xMove);
+
             if(!collisionWithTile(posx,(int)(y+bounds.y)/Tile.TILE_HEIGHT) && !collisionWithTile(posx,(int)(y+ bounds.y+bounds.height)/Tile.TILE_HEIGHT) && x+xMove>=0){
                 x+=xMove;
             }
@@ -93,7 +93,7 @@ trebuie rescris mult cod, ramane pentru etapa urmatoare
             //coliziuni colt stanga si dreapta sus ale dreptunghiului de coliziune
             if(!collisionWithTile((int)(x+ bounds.x)/Tile.TILE_WIDTH,posy) &&
                     !collisionWithTile((int)(x+ bounds.x+ bounds.width)/Tile.TILE_WIDTH,posy) && y+yMove>=0){
-                //System.out.println(y+yMove);
+
                 y+=yMove;
             }else{
                 y=posy*Tile.TILE_HEIGHT+Tile.TILE_HEIGHT- bounds.y;
@@ -105,13 +105,10 @@ trebuie rescris mult cod, ramane pentru etapa urmatoare
             //coliziuni colt stanga si dreapta jos ale dreptunghiului de coliziune
             if(!collisionWithTile((int)(x+ bounds.x)/Tile.TILE_WIDTH,posy) &&
                     !collisionWithTile((int)(x+ bounds.x+ bounds.width)/Tile.TILE_WIDTH,posy) && y+yMove>=0){
-                //System.out.println(y+yMove);
                 y+=yMove;
             }else{
 
                 y=posy*Tile.TILE_HEIGHT- bounds.y- bounds.height-1;
-                //System.out.println(y);
-                //System.out.println(y+yMove);
             }
         }
     }
@@ -124,6 +121,8 @@ trebuie rescris mult cod, ramane pentru etapa urmatoare
                \param x Pozitia pe axa X a pt acel tile cu care se verifica coliziunea
                \param y Pozitia pe axa Y a pt acel tile cu care se verifica coliziunea
 
+               Metoda e mai mult folosita pentru a determina coliziunile eroului
+
                Totodata, impelementeaza efectul coliziunii cu obiectele statice cu care intra in contact; updateaza state-ul etc
    */
     protected boolean collisionWithTile(int y,int x){
@@ -131,7 +130,7 @@ trebuie rescris mult cod, ramane pentru etapa urmatoare
             return true;
         if (x < 0  || x > 17)
             return true;
-        //System.out.println(refLink.GetWorld().getEntityManager().getDoor().getX()/32.+" "+refLink.GetWorld().getEntityManager().getDoor().getY()/32);
+
         if (refLink.GetWorld().getEntityManager().isDoor() && refLink.GetWorld().getEntityManager().getDoor().isSolid() && refLink.GetWorld().getEntityManager().getDoor().getX()/32 == y && refLink.GetWorld().getEntityManager().getDoor().getY()/32 == x)
         {
             return true;
@@ -142,19 +141,16 @@ trebuie rescris mult cod, ramane pentru etapa urmatoare
         }
         if (!refLink.GetWorld().getEntityManager().getStartFinishDoor().isSolid() && refLink.GetWorld().getEntityManager().getStartFinishDoor().getX()/32 == y && refLink.GetWorld().getEntityManager().getStartFinishDoor().getY()/32 == x)
         {
-           // System.out.println("ai trecut nivelu");
-           // Level.getInstance().incLevel();
+
+
             Level.getInstance().setChangeLevel(true);
             return false;
         }
-/*        System.out.println();
-        System.out.println("Coordonatele Button: "+refLink.GetWorld().getEntityManager().getButton().getY()/32+";"+refLink.GetWorld().getEntityManager().getButton().getX()/32);
-        System.out.println("Coordonate Caracter: "+x+";"+y);
-        System.out.println();*/
+
         if (refLink.GetWorld().getEntityManager().isButton() && !refLink.GetWorld().getEntityManager().getButton().isPressed() && (int)refLink.GetWorld().getEntityManager().getButton().getX()/32 == y && (int)refLink.GetWorld().getEntityManager().getButton().getY()/32 == x)
         {
-            //System.out.println("Coordonatele Button: "+refLink.GetWorld().getEntityManager().getButton().getY()/32+";"+refLink.GetWorld().getEntityManager().getButton().getX()/32);
-            //System.out.println("Am ajuns aici");
+
+
             refLink.GetWorld().getEntityManager().getDoor().setSolid(false);
             refLink.GetWorld().getEntityManager().getButton().setPressed(true);
 

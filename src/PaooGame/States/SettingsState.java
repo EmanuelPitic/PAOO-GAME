@@ -12,15 +12,14 @@ import java.awt.*;
 
 /*! \public class SettingsState extends State
     \brief Implementeaza notiunea de setari ale jocului.
-
     Aici setarile vor fi salvate intr-o baza de date sqlite.
  */
+
 public class SettingsState extends State
 {
 
     /*! \fn public SettingsState(RefLinks refLink)
         \brief Constructorul de initializare al clasei.
-
         \param refLink O referinta catre un obiect "shortcut", obiect ce contine o serie de referinte utile in program.
      */
     public SettingsState(RefLinks refLink)
@@ -28,12 +27,6 @@ public class SettingsState extends State
         super(refLink);
         uiManager=new UIManager(refLink);
         refLink.GetMouseManager().setUIManager(uiManager);
-
-
-
-
-
-
         ///start muzica
         uiManager.addObject(new UIImageButton(450, 230, 192, 64, Assets.musicOn_btn, new ClickListener() {
             @Override
@@ -80,7 +73,6 @@ public class SettingsState extends State
 
     /*! \fn public void Draw(Graphics g)
         \brief Deseneaza (randeaza) pe ecran starea curenta a setarilor.
-
         \param g Contextul grafic in care trebuie sa deseneze starea jocului pe ecran.
      */
     @Override
@@ -97,7 +89,6 @@ public class SettingsState extends State
         finally {
             g.setFont(new Font("Algerian", Font.PLAIN, 100));
             Text.drawString(g,"Music status",1056/5,100,Color.BLACK);
-
             uiManager.Render(g);
         }
 

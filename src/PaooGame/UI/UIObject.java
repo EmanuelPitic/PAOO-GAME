@@ -9,7 +9,6 @@ import java.awt.event.MouseEvent;
  */
 public abstract class UIObject {
 
-
     protected float x; /*!< Pozitia pe axa X a tablei de joc a imaginii obiectui interfetei grafice.*/
     protected float y;/*!< Pozitia pe axa Y a tablei de joc a imaginii obiectui interfetei grafice.*/
     protected int width; /*!< Latimea obiectui interfetei grafice.*/
@@ -55,7 +54,6 @@ public abstract class UIObject {
             hovering=true;
         else
             hovering=false;
-
     }
 
 

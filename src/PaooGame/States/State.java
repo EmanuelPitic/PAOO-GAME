@@ -23,12 +23,6 @@ public abstract class State {
     protected RefLinks refLink; /*!< O referinta catre un obiect "shortcut", obiect ce contine o serie de referinte utile in program.*/
     protected UIManager uiManager; /*!< O referinta catre managerul interfetei grafice.*/
 
-
-
-    protected  boolean notify; /*!< Flag ce anunta State-ul atunci cand trebuie afisat ceva pe ecran.*/
-
-
-
     /*! \fn  public State(RefLinks refLink)
        \brief Constructorul cu parametri al clasei State.
 
@@ -67,9 +61,7 @@ public abstract class State {
 
         \param flag Flag-ul pentru setarea atributului notify.
      */
-    public  void setNotify(boolean flag){
-        notify=flag;
-    }
+
 
     /// returneaza managerul UI
     public UIManager getUiManager() {
