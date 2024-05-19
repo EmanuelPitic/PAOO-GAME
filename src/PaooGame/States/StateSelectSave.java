@@ -40,7 +40,7 @@ public class StateSelectSave extends State {
         // Add UI buttons for each saved game
         int yOffset = 200;
         for (String gameState : gameStates) {
-            uiManager.addObject(new UIImageButton(450, yOffset, 192, 64, Assets.ok_btn, new ClickListener() {
+            uiManager.addObject(new UIImageButton(650, yOffset, 192, 64, Assets.ok_btn, new ClickListener() {
                 @Override
                 public void onClick() {
                     //.getInstance().setLevel(0);
@@ -59,6 +59,15 @@ public class StateSelectSave extends State {
             }));
             yOffset += 80;
         }
+        uiManager.addObject(new UIImageButton(900, 460, 128, 32, Assets.back_btn, new ClickListener() {
+            @Override
+            public void onClick() {
+                refLink.GetMouseManager().setUIManager(State.GetPreviousState().getUiManager());
+                State.SetState(State.GetPreviousState());
+//refLink.GetGame().getDisplay().GetFrame().requestFocusInWindow();
+
+            }
+        }));
     }
 
     /**
@@ -83,13 +92,21 @@ public class StateSelectSave extends State {
             g.setFont(new Font("Algerian", Font.PLAIN, 80));
             Text.drawString(g, "Select a Save", 1056 / 6, 100, Color.BLACK);
             uiManager.Render(g);
+            saveNames = new ArrayList<>();
+            saveNames= SQL.getInstance().getLastNames();
+
+            List<String> lastLevels = new ArrayList<>();
+            lastLevels = SQL.getInstance().getLastLevels();
+            int i = 0;
 
             // Render save names
             g.setFont(new Font("Arial", Font.PLAIN, 40));
             int yOffset = 200;
-            for (String saveName : saveNames) {
-                Text.drawString(g, saveName, 310, yOffset + 40, Color.BLACK);
+            for ( i = 0; i<4;i++) {
+                Text.drawString(g, saveNames.get(i)+";", 90, yOffset + 40, Color.BLACK);
+                Text.drawString(g, "Level: "+lastLevels.get(i) , 280, yOffset + 40, Color.BLACK);
                 yOffset += 80;
+                //i++;
             }
 
 

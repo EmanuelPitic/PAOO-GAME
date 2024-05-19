@@ -93,7 +93,7 @@ public class Game implements Runnable {
     public State stateSetPlayerState;
    // private State loadPlayState;
     public State stateSelectSave;
-
+    public State leaderBoardState;
 
     private Tile tile; //!< variabila membra temporara. Este folosita in aceasta etapa doar pentru a desena ceva pe ecran./
     private RefLinks refLink;   //!< O referinte catre un obiect "shortcut", obiect ce contine o serie de referinte utile in program./
@@ -152,6 +152,7 @@ public class Game implements Runnable {
         settingsState = new SettingsState(refLink);
         gameWonState = new GameWonState(refLink, false);
         stateSetPlayerState = new StateSetPlayerName(refLink);
+        leaderBoardState = new LeaderBoardState(refLink);
 
 
         refLink.GetMouseManager().setUIManager(menuState.getUiManager());

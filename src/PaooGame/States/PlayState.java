@@ -151,11 +151,11 @@ public class PlayState extends State{
 
        if(timer.TimePassed()){
            if (isLoadedForEndGame) {
-               score=100-timeInGame;
-               score+=(lvl.getLevelNr()-1)*100;
+               score=100*(lvl.getLevelNr())-timeInGame;
+               //score+=(lvl.getLevelNr()-1)*100;
            }
            else{
-               score=100-timeInGame;
+               score=100*(lvl.getLevelNr())-timeInGame;
            }
             countdown--;
             timeInGame++;
@@ -165,7 +165,11 @@ public class PlayState extends State{
         if(countdown==0)
         {
             //System.out.println(timeInGame);
-            SQL.getInstance().insertScore(refLink.GetGame().getStateSetPlayerState().toString(), score);
+            if(!isLoadedForEndGame)
+                SQL.getInstance().insertScore(refLink.GetGame().getStateSetPlayerState().toString(), score);
+            else {
+                SQL.getInstance().insertScore(cuv.substring(0, cuv.indexOf('/')), score);
+            }
             refLink.GetMouseManager().setUIManager(refLink.GetGame().getGameOverState().getUiManager());
             if(!isLoadedForEndGame)
             {
@@ -180,7 +184,11 @@ public class PlayState extends State{
         }
         else if(refLink.GetWorld().getEntityManager().getHero().getHealth()<=0  )
         {
-            SQL.getInstance().insertScore(refLink.GetGame().getStateSetPlayerState().toString(), score);
+            if(!isLoadedForEndGame)
+                SQL.getInstance().insertScore(refLink.GetGame().getStateSetPlayerState().toString(), score);
+            else {
+                SQL.getInstance().insertScore(cuv.substring(0, cuv.indexOf('/')), score);
+            }
             System.out.println(timeInGame);
             refLink.GetMouseManager().setUIManager(refLink.GetGame().getGameOverState().getUiManager());
             if(!isLoadedForEndGame)
@@ -243,8 +251,13 @@ public class PlayState extends State{
             else {
                 //System.out.println(timeInGame);
                 //jocul a fost finalizat cu succes si se revine in MenuState pentru a se relua, la cerere
-                SQL.getInstance().insertScore(refLink.GetGame().getStateSetPlayerState().toString(), score);
-                System.out.println(timeInGame);
+                score+=100;
+                if(!isLoadedForEndGame)
+                    SQL.getInstance().insertScore(refLink.GetGame().getStateSetPlayerState().toString(), score);
+                else {
+                    SQL.getInstance().insertScore(cuv.substring(0, cuv.indexOf('/')), score);
+                }
+               // System.out.println(timeInGame);
                 State.SetState(refLink.GetGame().gameWonState = new GameWonState(refLink, isLoadedForEndGame));
                 refLink.GetMouseManager().setUIManager(refLink.GetGame().getGameWonState().getUiManager());
                // refLink.GetGame().getDisplay().GetFrame().requestFocusInWindow();

@@ -74,7 +74,7 @@ public class Assets {
     public static BufferedImage[] musicOff_btn;
     public static BufferedImage[] ok_btn;
     public static BufferedImage[] save_btn;
-
+    public static BufferedImage[] leaderboard_btn;
 
     public static BufferedImage ar_UP;
     public static BufferedImage ar_DOWN;
@@ -108,6 +108,7 @@ public class Assets {
         SpriteSheet policeCarSprite = new SpriteSheet(ImageLoader.LoadImage("/textures/policeCar.png"));
         SpriteSheet okSprite = new SpriteSheet(ImageLoader.LoadImage("/textures/ok.png"));
         SpriteSheet saveSprite = new SpriteSheet(ImageLoader.LoadImage("/textures/save.png"));
+        SpriteSheet leaderboardSprite = new SpriteSheet(ImageLoader.LoadImage("/textures/leaderboard_btn.png"));
 
         fog = sheet8.crop(0,0);
 
@@ -244,6 +245,7 @@ public class Assets {
         musicOff_btn=new BufferedImage[2];
         ok_btn=new BufferedImage[2];
         save_btn=new BufferedImage[2];
+        leaderboard_btn = new BufferedImage[2];
 
         resume[0] = resumeSprite.Crop(0,0,SpriteSheet.tileWidth*4,SpriteSheet.tileHeight);
         resume[1] = resumeSprite.Crop(4,0,SpriteSheet.tileWidth*4,SpriteSheet.tileHeight);
@@ -285,6 +287,10 @@ public class Assets {
 
         ok_btn[0]=okSprite.Crop(0,0,SpriteSheet.tileWidth*4,SpriteSheet.tileHeight);
         ok_btn[1]=okSprite.Crop(4,0,SpriteSheet.tileWidth*4,SpriteSheet.tileHeight);
+
+        leaderboard_btn[0] = leaderboardSprite.Crop(0,0,SpriteSheet.tileWidth*4,SpriteSheet.tileHeight);
+        leaderboard_btn[1] = leaderboardSprite.Crop(4,0,SpriteSheet.tileWidth*4,SpriteSheet.tileHeight);
+
 
 
         /// Se obtin subimaginile corespunzatoare elementelor necesare.

@@ -120,6 +120,60 @@ public class SQL {
         return gameStates;
     }
 
+    public ArrayList<String> getLastNames() {
+        ArrayList<String> gameStates = new ArrayList<>();
+        String query = "SELECT NAME FROM PLAYER ORDER BY ID DESC LIMIT 4";
+
+        try (PreparedStatement pstmt = c.prepareStatement(query);
+             ResultSet rs = pstmt.executeQuery()) {
+
+            while (rs.next()) {
+                gameStates.add(rs.getString("NAME"));
+            }
+
+        } catch (SQLException e) {
+            System.err.println(e.getClass().getName() + ": " + e.getMessage());
+        }
+
+        return gameStates;
+    }
+
+    public ArrayList<String> getLastLevels() {
+        ArrayList<String> gameStates = new ArrayList<>();
+        String query = "SELECT LEVEL FROM PLAYER ORDER BY ID DESC LIMIT 4";
+
+        try (PreparedStatement pstmt = c.prepareStatement(query);
+             ResultSet rs = pstmt.executeQuery()) {
+
+            while (rs.next()) {
+                gameStates.add(rs.getString("LEVEL"));
+            }
+
+        } catch (SQLException e) {
+            System.err.println(e.getClass().getName() + ": " + e.getMessage());
+        }
+
+        return gameStates;
+    }
+
+    public ArrayList<String> getBestSCores() {
+        ArrayList<String> gameStates = new ArrayList<>();
+        String query = "SELECT NAME, SCORE FROM SCORE ORDER BY SCORE DESC LIMIT 3";
+
+        try (PreparedStatement pstmt = c.prepareStatement(query);
+             ResultSet rs = pstmt.executeQuery()) {
+
+            while (rs.next()) {
+                gameStates.add(rs.getString("NAME")+" "+rs.getString("SCORE"));
+            }
+
+        } catch (SQLException e) {
+            System.err.println(e.getClass().getName() + ": " + e.getMessage());
+        }
+
+        return gameStates;
+    }
+
     public void closeConnection() {
         try {
 
@@ -143,6 +197,8 @@ public class SQL {
         }
         return -1;
     }
+
+
 
   //  public void insertPlayer()
 
